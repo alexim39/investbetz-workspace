@@ -1,0 +1,33 @@
+.container {
+  border-radius: 10px;
+  .x {
+    position: relative;
+    float: right;
+    top: 3px;
+    right: 5px;
+    height: 1.8em;
+    width: 1.8em;
+    z-index: 3;
+  }
+  form {
+    //margin-top: 2em;
+    margin-bottom: 2em;
+    .row {
+      h5 {
+        text-align: center;
+        padding-top: 2em;
+        padding-bottom: 2rem;
+      }
+    }
+    button{
+      margin-top: 1em;
+    }
+  }
+}
+
+/* Extra small devices (phones, up to 480px) */
+@media screen and (max-width: 767px) {
+  .container {
+    margin-top: 2em;
+  }
+}

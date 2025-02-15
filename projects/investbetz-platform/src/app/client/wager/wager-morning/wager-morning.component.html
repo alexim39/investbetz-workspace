@@ -1,0 +1,68 @@
+<div *ngIf="morningOdd then showResult else noResult"></div>
+
+<ng-template #showResult>
+
+    <div class="row">
+      <div class="col s12">
+
+        <table class="responsive-table">
+          <thead>
+            <tr>
+              <th>Odd Value</th>
+              <th>Winning Chances</th>
+              <th>Wager Amount</th>
+              <th>Place Wager</th>
+              <th>Payout Amount</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr>
+              <td [ngClass]="{'red-text text-darken-1': isExpired}">
+                <small class="grey-text text-lighten-1">Morning Odd:</small><br>
+                {{morningOdd}}<br>
+                <small><b>Expires: {{morningCountdown}}</b></small>
+              </td>
+
+              <td class="center-align">
+                <div class="progress">
+                  <div class="determinate" [ngClass]="progressWidth(morningOdd)"></div>
+                </div>
+                <small>You have <b>{{oddStrength(morningOdd)}}</b> {{getImpliedProbability(morningOdd)}}% chances of winning</small>
+              </td>
+
+              <td class="row">
+                <div class="input-field">
+                  <input id="fodd" class="validate" type="text" [(ngModel)]="wagerAmount" (ngModelChange)="checkWagerAmount($event)" required/>
+                  <label for='fodd'>Enter your wager amount</label>
+                  <small class="helper-text orange-text text-darken-3">Amount range for Wager is &#8358; 500.00 - &#8358; 50,000.00 </small>
+                </div>
+              </td>
+
+              <td>
+                <button [disabled]="wagerSubmitBtn || isExpired" (click)="submitMorningOdd()" class="btn btn-small waves-effect waves-red">Submit</button>
+              </td>
+
+              <td>
+                {{wagerPayoutAmount | currency:'NIG':'&#8358;'}}<br>
+                <small *ngIf="amountPayable">Payable: {{amountPayable | currency:'NIG':'&#8358;'}}</small>
+              </td>
+            </tr>   
+
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+
+</ng-template>
+
+<ng-template #noResult>
+  <div class="row">
+      <div class="col s12 center-align red-text text-lighten-1">
+          No wager odds available for morning session yet!
+      </div>
+  </div>
+</ng-template>

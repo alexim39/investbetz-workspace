@@ -1,0 +1,62 @@
+<div class="cashup-container">
+  <a [routerLink]="['../']"  class="x grey-text text-darken-1"> <i class="material-icons red-text">close</i> </a>
+
+  <section class="section z-depth-5">
+      <div class="row">
+        <div class="col s12">
+          <h5 class="center-align cashup-header">CashUp Investment Form</h5>
+
+          <div class="row">
+
+            <div class="input-field col m6 s12">
+              <input autofocus id="cashup-field" [(ngModel)]="cashupField" #cashupAmount (keyup)="getCashup(cashupAmount.value)" type="number" maxlength="6" min="5000" max="100000" class="validate">
+              <label for="cashup-field">Enter investment amount here</label>
+              <small class="helper-text orange-text text-darken-3">Required amount range for CashUp is &#8358; 3,000.00 - &#8358; 100,000.00 </small>
+            </div>
+
+            <div class="input-field col m6 s12">
+              <select [(ngModel)]="cashupSelect" #cashupDuration (change)="getCashup(cashupAmount.value)">
+                <option disabled selected>Months Options</option>
+                <option value="27">1 Month</option> <!-- Minus 4 days for sunday-->
+                <option value="55">2 Months</option> <!-- Minus 4 days for sunday-->
+                <option value="86">3 Months</option> <!-- Minus 5 days for sunday-->
+                <option value="116">4 Months</option> <!-- Minus 4 days for sunday-->
+                <option value="147">5 Months</option> <!-- Minus 4 days for sunday-->
+                <option value="175">6 Months</option> <!-- Minus 5 days for sunday-->
+                <option value="207">7 Months</option> <!-- Minus 4 days for sunday-->
+                <option value="237">8 Months</option> <!-- Minus 4 days for sunday-->
+                <option value="266">9 Months</option> <!-- Minus 4 days for sunday-->
+                <option value="297">10 Months</option> <!-- Minus 4 days for sunday-->
+                <option value="326">11 Months</option> <!-- Minus 4 days for sunday-->
+                <option value="356">12 Months</option> <!-- Minus 5 days for sunday-->
+                <!-- NOTE: An average of 52 days will be deducted for sundays in a year -->
+              </select>
+              <label>Choose Investment Duration</label>
+              <!-- <small class="helper-text orange-text text-darken-3">Required amount range for CashUp is &#8358; 3,000.00 - &#8358; 100,000.00 </small> -->
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="input-field col m8 s12">
+              <!-- Switch -->
+              <div class="switch">
+                  <label>
+                    Invest from my Deposit balance
+                    <input type="checkbox" #investFromBalanceBox [checked]="isInvestFromDepositBalance" (click)="chooseInvestmntOptions(investFromBalanceBox.checked)">
+                    <span class="lever"></span>
+                    Invest from my withdrawable balance
+                  </label>
+                </div>
+              </div>
+
+            <div class="col m4 s12">
+              <button [disabled]="cashupBtn" class="col s12 btn btn-large waves-effect waves-red" (click)="submitCashUp(cashupAmount.value, cashupDuration.value)">Submit</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </section>
+</div>

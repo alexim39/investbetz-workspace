@@ -1,0 +1,26 @@
+.cashup-container {
+  margin: 3em;
+  .x {
+    position: relative;
+    float: right;
+    top: 3px;
+    right: 5px;
+    height: 1.8em;
+    width: 1.8em;
+    z-index: 3;
+  }
+  .x:hover {
+    color: #aaa;
+  }
+}
+
+.section {
+  padding: 1em 5em;
+  border-radius: 10px;
+  position: relative;
+}
+
+.cashup-header {
+  margin-bottom: 2em;
+  padding-top: 2em;
+}

@@ -101,7 +101,7 @@ export class SignInComponent implements OnDestroy {
       next: (response: any) => {
         this.isLoading = false;
         if (response.message === 'done') {
-          this.router.navigate(['/profile']);
+          this.router.navigate(['/dashboard']);
         }
       },
       error: (error) => {

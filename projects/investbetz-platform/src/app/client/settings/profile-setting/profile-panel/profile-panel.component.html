@@ -1,0 +1,87 @@
+<div class="col m4 s12 z-depth-4">
+
+  <div class="user-view center-align">
+    <div class="user-view--img">
+      <img class="circle" [src]="img"> <!--https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg-->
+
+      <!-- <form action="#">
+        <div class="file-field input-field">
+          <button class="tooltipped" data-position="bottom" data-tooltip="Change Image">
+            <i class="material-icons">add</i>
+            <input #avatar type="file" accept='image/*' (change)="preview($event)">
+          </button>
+        </div>
+
+        <div class="red-text text-darken-3" *ngIf="message" [@fadeInOut]><small>{{message}}</small></div>
+
+      </form> -->
+
+    </div>
+  </div>
+
+  <ul class="collection with-header grey-text text-darken-1">
+    <li class="collection-header">
+      <h6>Current Profile Settings</h6>
+    </li>
+    <li class="collection-item truncate">
+      <small>Name:</small>
+      <em>{{ lastName | titlecase }} {{ firstName | titlecase }}</em>
+    </li>
+    <li class="collection-item">
+      <small>Phone:</small>
+      <em>{{ phone }}</em>
+    </li>
+    <li class="collection-item truncate">
+      <small>Email Address:</small>
+      <em>{{ email | lowercase }}</em>
+    </li>
+    <li class="collection-item">
+      <small>Gender:</small>
+      <em>{{ gender | titlecase }}</em>
+    </li>
+    <li class="collection-item">
+      <small>Date Of Birth:</small>
+      <em>{{ dob | date }}</em>
+    </li>
+    <li class="collection-item truncate">
+      <small>City Of Resident:</small>
+      <em>{{ city | titlecase }}</em>
+    </li>
+    <li class="collection-item truncate">
+      <small>Current Address:</small>
+      <em>{{ address }}</em>
+    </li>
+    <li class="collection-item truncate">
+      <small>Signed Up:</small>
+      <em>{{ startDate | date }}</em>
+    </li>
+  </ul>
+
+  <ul class="collection with-header grey-text text-darken-1">
+    <li class="collection-header">
+      <h6>Current Bank Settings</h6>
+    </li>
+    <li class="collection-item truncate">
+      <small>Bank Name:</small>
+      <em>{{ bankName | titlecase }}</em>
+    </li>
+    <li class="collection-item">
+      <small>Account No:</small>
+      <em> {{ accountNo }}</em>
+    </li>
+    <li class="collection-item">
+      <small>Monthly Auto Withdraw:</small>
+      <em style="margin-left: 3em;"> {{status}}</em>
+    </li>
+  </ul>
+
+  <ul class="collection with-header grey-text text-darken-1">
+    <li class="collection-header">
+      <h6>Current Wager Settings</h6>
+    </li>
+    <li class="collection-item">
+      <small>Auto Wager:</small>
+      <em style="margin-left: 3em;"> {{status}}</em>
+    </li>
+  </ul>
+</div>

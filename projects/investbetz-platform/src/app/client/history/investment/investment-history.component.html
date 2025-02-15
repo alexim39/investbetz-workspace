@@ -1,0 +1,319 @@
+<div *ngIf="isEmptyResponse then showResult else noResult"></div>
+
+<ng-template #showResult>
+
+    <div class="row">
+
+        <!-- <mat-form-field>
+            <mat-label>Search Table</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Filter data table" #input>
+        </mat-form-field> -->
+
+
+       <!--  <table mat-table [dataSource]="histories" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8 responsive-table highlight" > -->
+        <table mat-table [dataSource]="histories" matSort class="mat-elevation-z8 responsive-table highlight" >
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef> S/n </th>
+              <td mat-cell *matCellDef="let history; let i = index;"> {{i + 1}} </td>
+            </ng-container>
+
+            <!-- Investment ID Column -->
+            <ng-container matColumnDef="investmentId">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Investment ID </th>
+              <td mat-cell *matCellDef="let history"> {{history.transactionId}} </td>
+            </ng-container>
+
+            <!-- Plan Column -->
+            <ng-container matColumnDef="plan">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Plan </th>
+              <td mat-cell *matCellDef="let history"> {{history.plan}} </td>
+            </ng-container>
+
+            <!-- Amount Column -->
+            <ng-container matColumnDef="amount">
+              <th mat-header-cell *matHeaderCellDef  mat-sort-header> Amount </th>
+              <td mat-cell *matCellDef="let history"> {{history.amount | currency:'NIG':'&#8358;' }} </td>
+            </ng-container>
+
+            <!-- Period Column -->
+            <ng-container matColumnDef="period">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Period </th>
+                <td mat-cell *matCellDef="let history">
+                    <span [ngSwitch]="history.period">
+
+                        <!-- Cashout -->
+                        <span *ngSwitchCase="6">1 Week </span>
+
+                        <!-- Cashup -->
+                        <span *ngSwitchCase="27">1 Month</span>
+                        <span *ngSwitchCase="55">2 Months</span>
+                        <span *ngSwitchCase="86">3 Months</span>
+                        <span *ngSwitchCase="116">4 Months</span>
+                        <span *ngSwitchCase="147">5 Months</span>
+                        <span *ngSwitchCase="175">6 Months</span>
+                        <span *ngSwitchCase="207">7 Months</span>
+                        <span *ngSwitchCase="237">8 Months</span>
+                        <span *ngSwitchCase="266">9 Months</span>
+                        <span *ngSwitchCase="297">10 Months</span>
+                        <span *ngSwitchCase="326">11 Months</span>
+                        <span *ngSwitchCase="356">12 Months</span>
+
+                        <!-- Wager -->
+                        <span *ngSwitchCase="1">1 Day</span>
+
+                        <!-- Otherwise -->
+                        <span *ngSwitchDefault>Unknown period</span>
+                    </span>
+                </td>
+            </ng-container>
+
+            <!-- Start Date Column -->
+            <ng-container matColumnDef="startDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </th>
+                <td mat-cell *matCellDef="let history"> {{history.start | date }} </td>
+            </ng-container>
+
+              <!-- End Date Column -->
+            <ng-container matColumnDef="endDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> End Date </th>
+                <td mat-cell *matCellDef="let history"> {{ expiryDate(history.start, history.period) | date }}</td>
+              </ng-container>
+
+            <!-- Days Past Column -->
+            <ng-container matColumnDef="daysPast">
+                <th mat-header-cell *matHeaderCellDef> Days Past </th>
+                <td mat-cell *matCellDef="let history"> {{ getNumberOfDaysPast(history.start, history.period) }} </td>
+            </ng-container>
+
+            <!-- Days Left Column -->
+            <ng-container matColumnDef="daysLeft">
+                <th mat-header-cell *matHeaderCellDef> Days Left </th>
+                <td mat-cell *matCellDef="let history"> {{ numberOfDaysLeft(history.start, history.period) }} </td>
+            </ng-container>
+
+            <!-- Profit Column -->
+            <ng-container matColumnDef="profit">
+                <th mat-header-cell *matHeaderCellDef> Profit </th>
+                <td mat-cell *matCellDef="let history"> {{ investmentProfit(history.plan, history.start, history.amount, history.period, history.wager) | currency:'NIG':'&#8358;' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>   </th>
+                <td mat-cell *matCellDef="let history">
+                    <a href="#modal1" data-target="modal1" class="modal-trigger" title="View Detail">
+                      <i (click)="openDialog(history._id)" class="material-icons">pageview</i>
+                    </a>
+                </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+            <tr mat-row [ngClass]="{
+                'closed-deal': closedDeals(history.start, history.period),
+                'losed-wager': losedWager(history.start, history.period, history.wager),
+                'grey-text text-darken-1': unsettledWager(history.start, history.period, history.wager),
+                'green-text text-lighten-1': getLessThanOneWeek(history.start,history.period),
+                'orange-text text-lighten-1': getLessThanOneMonth(history.start, history.period)
+                }" *matRowDef="let history; columns: displayedColumns;">
+            </tr>
+
+          </table>
+
+          <mat-paginator [length]="100" [pageSize]="15" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+    </div>
+
+</ng-template>
+
+<ng-template #noResult>
+    <div class="row">
+        <div class="col s12 center-align red-text text-lighten-1">
+            No investment history yet!
+        </div>
+    </div>
+</ng-template>
+
+
+
+
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal bottom-sheet" >
+    <div class="modal-content">
+     <!--  <h4 *ngIf="historiesDetails">{{ historiesDetails.plan }}</h4>
+      <p *ngIf="historiesDetails">{{ historiesDetails.amount }}</p> -->
+
+      <table *ngIf="historiesDetails" class="responsive-table highlight">
+        <thead>
+            <tr>
+                <th>Investment ID</th>
+                <th>Plan</th>
+                <th>Amount</th>
+                <th>Period</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Days Past</th>
+                <th>Days Left</th>
+                <th>Profit</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <!-- <tr [ngClass]="{
+                  'closed-deal': closedDeals(historiesDetails.start, historiesDetails.period),
+                  'losed-wager': losedWager(historiesDetails.start, historiesDetails.period, historiesDetails.wager),
+                  'grey-text text-darken-1': unsettledWager(historiesDetails.start, historiesDetails.period, historiesDetails.wager),
+                  'green-text text-lighten-1': getLessThanOneWeek(historiesDetails.start,historiesDetails.period),
+                  'orange-text text-lighten-1': getLessThanOneMonth(historiesDetails.start, historiesDetails.period)
+                  }"> -->
+            <tr>
+                <td> {{ historiesDetails.transactionId }}</td> <!--Plan id-->
+                <td> {{ historiesDetails.plan  }}</td> <!--plan-->
+                <td> {{ historiesDetails.amount | currency:'NIG':'&#8358;' }} </td> <!--Amount-->
+                <td>
+                    <span [ngSwitch]="historiesDetails.period">
+
+                        <!-- Cashout -->
+                        <span *ngSwitchCase="6">1 Week </span>
+
+                        <!-- Cashup -->
+                        <span *ngSwitchCase="27">1 Month</span>
+                        <span *ngSwitchCase="55">2 Months</span>
+                        <span *ngSwitchCase="86">3 Months</span>
+                        <span *ngSwitchCase="116">4 Months</span>
+                        <span *ngSwitchCase="147">5 Months</span>
+                        <span *ngSwitchCase="175">6 Months</span>
+                        <span *ngSwitchCase="207">7 Months</span>
+                        <span *ngSwitchCase="237">8 Months</span>
+                        <span *ngSwitchCase="266">9 Months</span>
+                        <span *ngSwitchCase="297">10 Months</span>
+                        <span *ngSwitchCase="326">11 Months</span>
+                        <span *ngSwitchCase="356">12 Months</span>
+
+                        <!-- Wager -->
+                        <span *ngSwitchCase="1">1 Day</span>
+
+                        <!-- Otherwise -->
+                        <span *ngSwitchDefault>Unknown period</span>
+                    </span>
+                </td><!--Period-->
+                
+              <!--   <td> {{ historiesDetails.start | date }}</td> 
+                <td>{{ expiryDate(historiesDetails.start, historiesDetails.period) | date }}</td>
+                <td> {{ getNumberOfDaysPast(historiesDetails.start, historiesDetails.period) }}</td>
+                <td> {{ numberOfDaysLeft(historiesDetails.start, historiesDetails.period) }}</td>
+                <td> {{ investmentProfit(historiesDetails.plan, historiesDetails.start, historiesDetails.amount, historiesDetails.period, historiesDetails.wager) | currency:'NIG':'&#8358;' }} </td> -->
+                
+            </tr>
+            <tr class="section">
+                <td colspan="10">
+                    <div class="row">
+
+                        <div class="col m6 s12 collection-container">
+
+                            <ul class="collection with-header">
+                                <li class="collection-header"><h6><b>Investment Details</b></h6></li>
+                                <li class="collection-item">Investment ID <span class="badge">{{historiesDetails.transactionId}}</span></li>
+                                <li class="collection-item">Plan Type <span class="badge">{{historiesDetails.plan}}</span></li>
+                                <li class="collection-item">Investment Period
+                                    <span class="badge">
+
+                                        <span [ngSwitch]="historiesDetails.period">
+
+                                            <!-- Cashout -->
+                                            <span *ngSwitchCase="6">1 Week </span>
+
+                                            <!-- Cashup -->
+                                            <span *ngSwitchCase="27">1 Month</span>
+                                            <span *ngSwitchCase="55">2 Months</span>
+                                            <span *ngSwitchCase="86">3 Months</span>
+                                            <span *ngSwitchCase="116">4 Months</span>
+                                            <span *ngSwitchCase="147">5 Months</span>
+                                            <span *ngSwitchCase="175">6 Months</span>
+                                            <span *ngSwitchCase="207">7 Months</span>
+                                            <span *ngSwitchCase="237">8 Months</span>
+                                            <span *ngSwitchCase="266">9 Months</span>
+                                            <span *ngSwitchCase="297">10 Months</span>
+                                            <span *ngSwitchCase="326">11 Months</span>
+                                            <span *ngSwitchCase="356">12 Months</span>
+
+                                            <!-- Wager -->
+                                            <span *ngSwitchCase="1">1 Day
+                                                 <!-- <small>({{ historiesDetails.wager.session | titlecase }} wager)</small> -->
+                                            </span>
+
+                                            <!-- Otherwise -->
+                                            <span *ngSwitchDefault>Unknown period</span>
+
+                                        </span>
+
+                                    </span>
+                                </li>
+                                <li class="collection-item">Invested Amount <span class="badge">{{ historiesDetails.amount | currency:'NIG':'&#8358;' }}</span></li>
+                                <li class="collection-item">Percentage Per Day <span class="badge">{{ investmentPercentage( historiesDetails.plan, historiesDetails.wager ) }}</span></li>
+                            </ul>
+
+                        </div>
+
+                        <div class="col m6 s12 collection-container">
+
+                           <!--  <ul class="collection with-header">
+                                <li class="collection-header"><h6><b>Investment Status</b></h6></li>
+                                <li class="collection-item">Start Date <span class="badge">{{ historiesDetails.start | date }}</span></li>
+                                <li class="collection-item">End Date <span class="badge">{{ expiryDate(historiesDetails.start, historiesDetails.period) | date }}</span></li>
+                                <li class="collection-item">Status <span class="badge" [innerHTML]="investmentStatus(numberOfDaysLeft(historiesDetails.start, historiesDetails.period))"></span></li>
+                                <li class="collection-item">Profit <span class="badge">{{ investmentProfit(historiesDetails.plan, historiesDetails.start, historiesDetails.amount, historiesDetails.period, historiesDetails.wager) | currency:'NIG':'&#8358;' }}</span></li>
+                                <li class="collection-item">Payout <span class="badge">{{ investmentPayout( investmentProfit(historiesDetails.plan, historiesDetails.start, historiesDetails.amount, historiesDetails.period, historiesDetails.wager), historiesDetails.amount, historiesDetails.plan ) | currency:'NIG':'&#8358;' }}</span></li>
+                            </ul> -->
+
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="section" [ngSwitch]="historiesDetails.period">
+                <!-- wager -->
+                <td colspan="10" *ngSwitchCase="1">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Game</th>
+                                <th>Prediction</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           <!--  <tr *ngFor="let item of historiesDetails.wager.games.game | keyvalue">
+                                <td>
+                                    {{item.value.game | titlecase}}
+                                </td>
+                                <td>
+                                    {{item.value.prediction |uppercase }}
+                                </td>
+                                <td>
+                                    {{item.value.status | uppercase }}
+                                </td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+
+    </div>
+
+    <div class="modal-footer">
+      <a class="modal-close waves-effect waves-green btn red darken-1">Close</a>
+    </div>
+  </div>

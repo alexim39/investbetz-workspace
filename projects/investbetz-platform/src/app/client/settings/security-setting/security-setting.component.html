@@ -1,0 +1,55 @@
+<div class="ss-container">
+  <header>
+    <h5>Security Profile</h5>
+    <div class="grey-text">Security settings and overview</div>
+  </header>
+
+  <div class="row">
+    <!-- Change Password Section -->
+    <div class="col m6 s12">
+      <div class="row">
+        <div class="col s12">
+          <h6 class="grey-text text-lighten-1">Change Password</h6>
+          <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword(changePasswordForm.value)" autocomplete="off">
+            <div class="row">
+              <div class="input-field col s12">
+                <input
+                  id="currentPassword"
+                  type="password"
+                  class="validate"
+                  appAppPasswordToggle
+                  formControlName="currentPassword"
+                  aria-describedby="currentPasswordHelp"
+                />
+                <label for="currentPassword">Enter your current password</label>
+                <small id="currentPasswordHelp" class="helper-text p-hint">
+                  Password must be a minimum of 6 characters with at least a number
+                </small>
+                <small class="helper-text error-msg" *ngIf="changePasswordForm.get('currentPassword')?.invalid && changePasswordForm.get('currentPassword')?.touched">
+                  <span *ngIf="changePasswordForm.get('currentPassword')?.errors?.['required']">
+                    Your current password is required to enable password change
+                  </span>
+                </small>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input
+                  id="newPassword"
+                  type="password"
+                  class="validate"
+                  appAppPasswordToggle
+                  formControlName="newPassword"
+                  aria-describedby="newPasswordHelp"
+                />
+                <label for="newPassword">Enter your new password</label>
+                <small id="newPasswordHelp" class="helper-text p-hint">
+                  Password must be a minimum of 6 characters with at least a number
+                </small>
+                <small class="helper-text error-msg" *ngIf="changePasswordForm.get('newPassword')?.invalid && changePasswordForm.get('newPassword')?.touched">
+                  <span *ngIf="changePasswordForm.get('newPassword')?.errors?.['required']">
+                    Your new password is required to enable password change
+                  </span>
+                </small>
+              </div>

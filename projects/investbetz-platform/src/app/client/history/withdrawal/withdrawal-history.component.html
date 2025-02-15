@@ -1,0 +1,101 @@
+
+<div *ngIf="isEmptyResponse then showResult else noResult"></div>
+
+<ng-template #showResult>
+
+  <div class="row">
+
+    <!-- <mat-form-field>
+        <mat-label>Search Table</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Search with any column data" #input>
+    </mat-form-field> -->
+
+
+    <!-- <table mat-table [dataSource]="withdrawals" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8 responsive-table highlight"> -->
+    <table mat-table [dataSource]="withdrawals" matSort class="mat-elevation-z8 responsive-table highlight">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> S/n </th>
+          <td mat-cell *matCellDef="let withdraw; let i = index;"> {{i + 1}} </td>
+        </ng-container>
+      
+        <!-- Investment ID Column -->
+        <ng-container matColumnDef="Amount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Withdraw Amount </th>
+          <td mat-cell *matCellDef="let withdraw"> {{ withdraw.withdrawAmount | currency:'NIG':'&#8358;' }} </td>
+        </ng-container>
+      
+        <!-- Amount Column -->
+        <ng-container matColumnDef="Bank">
+          <th mat-header-cell *matHeaderCellDef  mat-sort-header> Withdraw Bank </th>
+          <td mat-cell *matCellDef="let withdraw"> {{ withdraw.bankName | titlecase }} </td>
+        </ng-container>
+
+        <!-- Date Column -->
+        <ng-container matColumnDef="Account">
+          <th mat-header-cell *matHeaderCellDef  mat-sort-header> Withdraw Account </th>
+          <td mat-cell *matCellDef="let withdraw"> {{ withdraw.accountNo }} </td>
+        </ng-container>
+    
+        <!-- Start Date Column -->
+        <ng-container matColumnDef="Date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Withdraw Date </th>
+            <td mat-cell *matCellDef="let withdraw"> {{ withdraw.withdrawDate | date}},<small>{{ withdraw.withdrawDate | date:'shortTime' }}</small></td>
+        </ng-container>
+    
+        <!-- End Date Column -->
+        <ng-container matColumnDef="Status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Withdraw Status</th>
+            <td mat-cell *matCellDef="let withdraw"> {{ withdraw.withdrawStatus | titlecase }}</td> 
+        </ng-container>  
+
+         <!-- Action Column -->
+         <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+            <td mat-cell *matCellDef="let withdraw">
+              <button [disabled]="disable" (click)="cancelWithdrawal(withdraw._id)" class="waves-effect waves-light btn-small">Cancel</button>
+            </td> 
+        </ng-container>
+        
+        <!-- total withdraw column -->
+        <ng-container matColumnDef="withdraw">
+          <td mat-footer-cell *matFooterCellDef colspan="7">
+            Total Withdraw <span class="totalDeposit green-text green-darken-1"> {{ totalWithdrawal | currency:'NIG':'&#8358;'}}</span>
+          </td>
+        </ng-container>
+    
+      
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row   [ngClass]="{'orange-text text-lighten-1': setPendingCSS(withdraw.withdrawStatus), 'green-text text-lighten-1': setCompletedCSS(withdraw.withdrawStatus), 'red-text text-lighten-1': setRejectedCSS(withdraw.withdrawStatus)}"
+          *matRowDef="let withdraw; columns: displayedColumns;">
+        </tr>
+        <tr mat-footer-row *matFooterRowDef="['withdraw']"></tr>
+      </table>
+
+      <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+  </div>
+
+ <!--  <div class="row">
+    <div *ngIf="errorMessage"  class="error" [@fadeInOut]>
+      <span>{{ errorMessage }}</span>
+    </div>
+    <div *ngIf="successMessage"  class="success" [@fadeInOut]>
+      <span>{{ successMessage }}</span>
+    </div>
+  </div> -->
+
+</ng-template>
+
+<ng-template #noResult>
+  <div class="row">
+    <div class="col s12 center-align red-text text-lighten-1">
+        No withdrawal history yet!
+    </div>
+  </div>
+</ng-template>

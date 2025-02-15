@@ -1,0 +1,119 @@
+table {
+    thead {
+        tr {
+            th {
+                font-size: 1em;
+                color: rgb(121, 106, 106);
+            }
+        }
+    }
+    tbody {
+        tr {
+            td {
+                font-size: 1em;
+            }
+        }
+    }
+}
+ul {
+    margin-top: 3em;
+    li {
+        a {
+            font-size: 0.8em;
+        }
+    }
+}
+
+mat-paginator {
+    margin-top: 1em;
+}
+ 
+// this class is programatically added on the template
+.closed-deal {
+    text-decoration: line-through;
+ }
+
+.losed-wager {
+    color: #d32f2f !important;
+}
+  
+.investmntDetails {
+    cursor: pointer;
+}
+  
+h6 {
+    color: #e57373;
+}
+  
+.section {
+    //display: none;
+    border-top: 2px solid #ef9a9a;
+}
+  
+.collection-container {
+    margin-top: -1em;
+    margin-bottom: -2.3em;
+}
+  
+.badge {
+    float: right;
+}
+
+  
+/* Extra small devices (phones, up to 480px) */
+@media screen and (max-width: 767px) {
+    .hide-on-small-screen {
+      display: none;
+    }
+}
+  
+
+
+
+table {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }

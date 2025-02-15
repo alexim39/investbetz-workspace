@@ -1,0 +1,55 @@
+<div *ngIf="isEmptyResponse then showResult else noResult"></div>
+
+<ng-template #showResult>
+    <div class="container">
+        <div class="row">
+            <h6 class="grey-text text-lighten-1">Bank Withdrawal Details</h6>
+            <div class="divider"></div>
+    
+            <table class="responsive-table" *ngIf="AutoWithdrawObj">
+                <thead>
+                  <tr>
+                      <th>Monthly Withdraw Amount</th>
+                      <th>Bank Name</th>
+                      <th>Account Number</th>
+                      <th>Monthly Withdraw Date</th>
+                      <th>Occurance</th>
+                      <th>Automatic</th>
+                      <th>Init Date</th>
+                      <th></th>
+                  </tr>
+                </thead>
+        
+                <tbody>
+                  <tr>
+                    <td>{{AutoWithdrawObj.withdrawAmount | currency:'NIG':'&#8358;'}}</td>
+                    <td>{{AutoWithdrawObj.bankName}}</td>
+                    <td>{{AutoWithdrawObj.accountNo}}</td>
+                    <td>{{dayOfMonth}}</td>
+                    <td>{{isMonthly}}</td>
+                    <td>{{isAutomatic}}</td>
+                    <td>{{AutoWithdrawObj.requestDate | date}}</td>
+                    <td><i class="material-icons" (click)="removeAutoWithdraw(AutoWithdrawObj.clientId)">delete</i></td>
+                  </tr>
+                </tbody>
+              </table>
+    
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #noResult>
+    <div class="row">
+        <div class="col s12 center-align red-text text-lighten-1">
+           
+            <div class="row">
+                No auto withdraw settings!
+            </div>
+
+            <div class="row">
+                <a [routerLink]="['../../withdrawal/auto-withdraw']" class="btn btn-large waves-effect waves-red">Click here to set Auto Withdraw</a>
+            </div>
+        </div>
+    </div>
+</ng-template>

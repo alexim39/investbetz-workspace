@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col s12 center-align" style="margin-bottom: -0.8em;">
+      <h5>Calculate Your CashUp</h5>
+        <strong class="yellow-text text-darken-4">CashUp at 1% per day for a selected period</strong>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col s12 grey lighten-4 z-depth-1 cashup-wrap">
+    <div class="row content-section">
+
+      <div class="col s12 m6">
+        <div class="row cashup-fields">
+          <div class="input-field col s12">
+            <input id="cashup-field" [(ngModel)]="cashupField" #cashupAmount (keyup)="getCashup(cashupAmount.value)" type="number" maxlength="6" min="5000" max="100000" class="validate">
+            <label for="cashup-field">Enter investment amount here</label>
+            <small class="helper-text orange-text text-darken-3">Required amount range for CashUp is &#8358; 3,000.00 - &#8358; 100,000.00 </small>
+          </div>
+          <div class="input-field col s12">
+            <select [(ngModel)]="cashupSelect" #cashupDuration (change)="getCashup(cashupAmount.value)">
+              <option disabled selected>Months Options</option>
+              <option value="27">1 Month</option> <!-- Minus 4 days for sunday-->
+              <option value="55">2 Months</option> <!-- Minus 4 days for sunday-->
+              <option value="86">3 Months</option> <!-- Minus 5 days for sunday-->
+              <option value="116">4 Months</option> <!-- Minus 4 days for sunday-->
+              <option value="147">5 Months</option> <!-- Minus 4 days for sunday-->
+              <option value="175">6 Months</option> <!-- Minus 5 days for sunday-->
+              <option value="207">7 Months</option> <!-- Minus 4 days for sunday-->
+              <option value="237">8 Months</option> <!-- Minus 4 days for sunday-->
+              <option value="266">9 Months</option> <!-- Minus 4 days for sunday-->
+              <option value="297">10 Months</option> <!-- Minus 4 days for sunday-->
+              <option value="326">11 Months</option> <!-- Minus 4 days for sunday-->
+              <option value="356">12 Months</option> <!-- Minus 5 days for sunday-->
+              <!-- NOTE: An average of 52 days will be deducted for sundays in a year -->
+            </select>
+            <label>Select Investment Duration</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col s12 m6">
+        <div class="hide-on-small-only">
+          <div class="center-align">Let's Calculator your Cashout amount</div>
+          <div class="center-align msg-sub">
+            <small>Enter your investment amount and month to view the profit</small>
+          </div>
+        </div>
+
+        <div class="Profit grey-text text-lighten-1">PROFIT: <em class="display truncate red-text text-darken-1"> &nbsp;&nbsp;{{ cashupProfit | currency:'NIG':'&#8358;'}}</em></div>
+        <div class="Payout grey-text text-lighten-1">PAYOUT: <em class="display truncate red-text text-darken-1"> &nbsp;{{ cashupPayout | currency:'NIG':'&#8358;'}}</em></div>
+
+        <div class="row" style="margin-top:2em; margin-left: 4em;">
+          <button [routerLink]="['../investments/cashup']" [disabled]="cashupBtn" class="col s10 btn btn-large waves-effect waves-red hide-on-small-only">Start</button>
+          <button [routerLink]="['../investments/cashup']" [disabled]="cashupBtn" class="col s10 waves-effect waves-red btn-small show-on-small">Start</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

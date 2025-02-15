@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="row">
+
+    <h6 class="grey-text text-lighten-1">User Profile Details</h6>
+    <div class="divider"></div>
+
+    <form [formGroup]="userProfileForm" (ngSubmit)="userProfileFormSubmit(userProfileForm.value)" autocomplete="off">
+
+      <div class="col m6 s12">
+
+        <div class="input-field">
+          <input id="firstName" type="text" formControlName="firstName" class="validate" [ngModel]="firstName | titlecase">
+          <label for="firstName">First Name</label>
+          <small class="helper-text invalid" *ngIf="!userProfileForm.controls['firstName'].valid && userProfileForm.controls['firstName'].touched">
+            <span *ngIf="userProfileForm.controls['firstName'].errors?.['required']">Your first name is required</span>
+          </small>
+        </div>
+
+        <div class="input-field">
+          <input id="phone" type="tel" formControlName="phone" class="validate" maxlength="11" minlength="11" [ngModel]="phone">
+          <label for="phone">Phone Number</label>
+          <small class="helper-text invalid" *ngIf="!userProfileForm.controls['phone'].valid && userProfileForm.controls['phone'].touched">
+            <span *ngIf="userProfileForm.controls['phone'].errors?.['required']">Your phone is required</span>
+            <span *ngIf="userProfileForm.controls['phone'].errors?.['minlength']">Your phone is not yet correct</span>
+          </small>
+        </div>
+
+        <div class="input-field">
+          <input id="city" type="text" formControlName="city" class="validate" [ngModel]="city">
+          <label for="city">Residential City</label>
+          <small class="helper-text invalid" *ngIf="!userProfileForm.controls['city'].valid && userProfileForm.controls['city'].touched">
+            <span *ngIf="userProfileForm.controls['city'].errors?.['required']">Your city is required</span>
+          </small>
+        </div>
+
+        <div class="input-field">
+          <p>
+            <label class="male-gender">
+              <input name="gender" formControlName="gender" value="male" type="radio" />
+              <span>Male</span>
+            </label>
+
+            <label class="female-gender">
+              <input name="gender" formControlName="gender" value="female" type="radio" />
+              <span>Female</span>
+            </label>
+            <small class="helper-text invalid" *ngIf="!userProfileForm.controls['gender'].valid && userProfileForm.controls['gender'].touched">
+              <span *ngIf="userProfileForm.controls['gender'].errors?.['required']">Your gender is required</span>
+            </small>
+          </p>
+        </div>
+
+      </div>
+
+      <div class="col m6 s12">
+
+        <div class="input-field">
+          <input id="lastName" type="text" formControlName="lastName" [ngModel]="lastName | titlecase" class="validate">
+          <label for="lastName">Last Name</label>
+          <small class="helper-text invalid" *ngIf="!userProfileForm.controls['lastName'].valid && userProfileForm.controls['lastName'].touched">
+            <span *ngIf="userProfileForm.controls['lastName'].errors?.['required']">Your last name is required</span>
+          </small>
+        </div>
+
+        <div class="input-field">
+          <input id="signUpEmail" type="email" formControlName="signUpEmail" [ngModel]="signUpEmail | lowercase" class="validate">
+          <label for="signUpEmail">Email Address</label>
+          <small class="helper-text invalid" *ngIf="!userProfileForm.controls['signUpEmail'].valid && userProfileForm.controls['signUpEmail'].touched">
+            <span *ngIf="userProfileForm.controls['signUpEmail'].errors?.['required']">Your email is required</span>
+          </small>
+        </div>
+
+        <div class="input-field">
+          <textarea id="address" formControlName="address" class="materialize-textarea" [ngModel]="address"></textarea>
+          <label for="address">Residential Address</label>
+          <small class="helper-text invalid" *ngIf="!userProfileForm.controls['address'].valid && userProfileForm.controls['address'].touched">
+            <span *ngIf="userProfileForm.controls['address'].errors?.['required']">Your address is required</span>
+          </small>
+        </div>
+
+        <div class="input-field">
+          <input id="dob" type="date" formControlName="dob" class="validate" [ngModel]="dob | date:'dd/MM/yyyy'">
+          <label for="dob">Date of birth</label>
+          <small class="helper-text invalid" *ngIf="!userProfileForm.controls['dob'].valid && userProfileForm.controls['dob'].touched">
+            <span *ngIf="userProfileForm.controls['dob'].errors?.['required']">Your date of birth is required</span>
+          </small>
+        </div>
+
+      </div>
+
+      <div class='row'>
+        <button type='submit' [disabled]="userProfileForm.invalid || loading" class='col s12 btn btn-large waves-effect waves-red'>
+          Submit
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="newMsg-container">
+  <a [routerLink]="['../']" class="x grey-text text-darken-1"> <i class="material-icons red-text">close</i> </a>
+
+  <div class="newMsgPanel z-depth-5">
+
+    <h5 class="center-align">New Message</h5>
+
+    <form class="row" (ngSubmit)="msgSubmit(msgForm.value)" [formGroup]="msgForm" autocomplete="off" style="padding-left: 5rem; padding-right: 5rem;">
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="to" type="text" value="msg@investbetz.com" disabled>
+          <label class="to" for="to">Message recipient:</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <select formControlName="msgCatetory">
+            <option disabled selected>Select Message Category</option>
+            <option value="Complain">Complain</option>
+            <option value="Inquiry">Inquiry</option>
+            <option value="Others">Others</option>
+          </select>
+          <label>Select message category</label>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="subject" type="text" class="validate" formControlName="msgSubject">
+          <label for="subject">Message title: (Reason why you are sending the message)</label>
+          </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea validate" formControlName="msgContent"></textarea>
+          <label for="textarea1">Message description:</label>
+        </div>
+      </div>
+
+      <div class="row">
+          <button class="btn btn-large waves-effect waves-red col s12" type='submit' [disabled]="!msgForm.valid">Send Message</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

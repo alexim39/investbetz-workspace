@@ -1,0 +1,64 @@
+.cashup-wrap {
+    width: inherit;
+    border-radius: 10px;
+    height: auto;
+}
+
+.content-section {
+    margin-top: 3em;
+}
+
+
+.msg-sub {
+    margin-bottom: 1em;
+  }
+  
+  .cashout-field {
+    margin-top: 3em;
+  }
+  
+  .Amount, .Profit, .Payout {
+    margin-left: 3.5em;
+  }
+  
+  .display {
+    margin-left: 2em;
+    font-size: 19px;
+    font-family:monospace;
+  }
+  
+  .helper-text {
+    font-size: 11px;
+  }
+  
+  .hide-on-small-only {
+    display: block;
+  }
+  
+.show-on-small {
+    display: none;
+}
+  
+/* Extra small devices (phones, up to 480px) */
+@media screen and (max-width: 767px) {
+    .cashout-field {
+      margin-top: 0;
+    }
+  
+    .cashup-fields {
+      margin-top: -2.2em;
+    }
+  
+    .cashout-wrap, .cashup-wrap {
+      height: auto;
+    }
+  
+    .hide-on-small-only {
+      display: none;
+    }
+  
+    .show-on-small {
+      display: block;
+    }
+}
+  

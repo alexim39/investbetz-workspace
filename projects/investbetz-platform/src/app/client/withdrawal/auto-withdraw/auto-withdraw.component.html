@@ -1,0 +1,75 @@
+<div class="container">
+    <a [routerLink]="['../']"  class="x grey-text text-darken-1"> <i class="material-icons">close</i> </a>
+
+    <section class="section z-depth-5">
+      <div class="row">
+        <div class="col s12">
+          <h6>Automatic Cash Withdraw Form</h6>
+
+        <form [formGroup]="autoWithdrawForm" (ngSubmit)="autoWithdrawSubmit(autoWithdrawForm.value)" autocomplete="off">
+  
+          <div class="row">
+            <div class="input-field col m6 s12">
+              <input autofocus id="amount" type="number" formControlName="withdrawAmount" #withdrawAmount (keyup)="checkWithdrawProperties(withdrawAmount.value)" class="validate">
+              <label for="amount">Enter Withdraw Amount</label>
+              <small class="helper-text orange-text text-darken-3">Withdraw amount range is &#8358; 1,000.00 - &#8358; 1,000 000.00 </small>
+            </div>
+  
+            <div class="input-field col m6 s12">
+              <input [disabled]="true" id="bankname" [(ngModel)]="bankName" type="text" formControlName="bankName" value="{{bankName}}" class="validate">
+              <label class="bank" for="bankname">Bank Name</label>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="input-field col m6 s12">
+                <!-- Switch -->
+                <div class="switch">
+                    <label>
+                      Off
+                      <input type="checkbox" formControlName="isAutomatic"> <span class="lever"></span>
+                      On
+                    </label>
+                    <small class="helper-text orange-text text-darken-3">Turn automatic withdraw on or off</small>
+                  </div>
+              </div>
+
+            <div class="input-field col m6 s12">
+              <input [disabled]="true" id="accountno" type="text" [(ngModel)]="accountNo" formControlName="accountNo" value={{accountNo}} class="validate" maxlength="10" data-length="10">
+              <label class="bank"  for="accountno">Account Number </label>
+              <small class="helper-text orange-text text-darken-3"><a [routerLink]="['../../settings/profile']">Click here to update bank details</a></small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col m6 s12">
+              <input id="withdrawDate" type="date" min="{{todayDate}}"  formControlName="autoWithdrawDate" class="validate">
+              <label  for="withdrawDate">Choose Withdraw Date </label>
+            </div>
+
+            <div class="input-field col m6 s12">
+                <!-- Switch -->
+                <div class="switch">
+                    <label>
+                      Once
+                      <input type="checkbox" formControlName="isMonthly"> <span class="lever"></span>
+                      Monthly
+                    </label>
+                    <small class="helper-text orange-text text-darken-3">Set withdraw to occure once or specifed date of every month</small>
+                  </div>
+              </div>
+          </div>
+  
+          <div class="row center-align">
+            <div class="col m12 s12">
+              <button [disabled]="!autoWithdrawForm.valid || isWithdrawRange" class="col s12 btn btn-large waves-effect waves-red">Submit</button>
+            </div>
+          </div>
+
+        </form>
+  
+        </div>
+      </div>
+    </section>  
+  </div>
+  

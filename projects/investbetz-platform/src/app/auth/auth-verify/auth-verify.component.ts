@@ -67,25 +67,7 @@ export class AuthVerifyComponent implements OnInit {
       password: this.signInpassword
     };
 
-    // Call the AuthService signIn Method
-    /* his.authService.login(signInCredentials).subscribe((res) => {
-      this.router.navigateByUrl('/profile');
-    }, (err) => {
-      // console.error(err);
-      if (err.status === 401) {
-        // 401 - user not found
-        this.errMsg = 'Please confirm your email or password is correct';
-        this.loading = false;
-      } else if (err.status === 404) {
-        // 404 -  passport error
-        this.errMsg = 'There seems to be a problem with your sign in - try again';
-        this.loading = false;
-      }
-      // Remove msg after few sec
-      setTimeout(() => {
-        this.errMsg = null;
-   }, 6000);
-    }) */;
+    
   }
 
   private verifyAccount(token: string) {

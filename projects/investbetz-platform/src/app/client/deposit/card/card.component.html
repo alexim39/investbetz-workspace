@@ -1,0 +1,29 @@
+<div class="container z-depth-5">
+  <a [routerLink]="['../']"  class="x grey-text text-darken-1"> <i class="material-icons red-text">close</i> </a>
+
+  <div class="row">
+    <form class="col s8 offset-s2" name="cardDepositForm">
+      <div class="row">
+        <h5>Card payment gateway</h5>
+
+        <div class="input-field col s12">
+          <input disabled id="cardEmail" type="text" class="validate" [(ngModel)]="cardDepositEmail" name="cardDepositEmail">
+          <label for="cardEmail" class="emailLabel">Deposit email</label>
+          <!-- <small class="helper-text orange-text text-darken-3">Account email should be same with Skrill email</small> -->
+        </div>
+
+        <div class="input-field col s12">
+          <input id="depositAmount" type="text" class="validate" [(ngModel)]="cardDepositField" name="cardDepositField" #depositAmount (keyup)="setDepositAmount(depositAmount.value)" type="number">
+          <label for="depositAmount">Deposit amount</label>
+          <small class="helper-text orange-text text-darken-3">Deposit range is between &#8358; 3,000.00 - &#8358; 100,000.00 </small>
+        </div>
+
+        <div class="input-field">
+          <button type='submit' [disabled]="cardDepositBtn" class="col s12 btn btn-large waves-effect waves-red" (click)="cardDepositSubmit()">Deposit</button>
+        </div>
+        
+      </div>
+    </form>
+  </div>
+</div>
+

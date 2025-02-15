@@ -1,0 +1,47 @@
+<div class="container">
+  <section class="section z-depth-5">
+    <div class="row">
+      <div class="col s12">
+        <h5>Cash Withdraw Form</h5>
+
+        <div class="row">
+          <div class="input-field col m6 s12">
+            <input autofocus id="amount" #withdrawAmount (keyup)="checkWithdrawProperties(withdrawAmount.value)" type="number" class="validate">
+            <label for="amount">Enter withdraw amount</label>
+            <small class="helper-text orange-text text-darken-3">Withdraw amount range is &#8358; 1,000.00 - &#8358; 1,000 000.00 </small>
+          </div>
+
+          <div class="input-field col m6 s12">
+            <input disabled id="bankname" [(ngModel)]="bankName" type="text" class="validate">
+            <label class="bank" for="bankname">Bank Name</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col m6 s12 offset-m6">
+            <input disabled id="accountno" type="text" [(ngModel)]="accountNo" class="validate" maxlength="10" data-length="10">
+            <label class="bank"  for="accountno">Account Number </label>
+            <small class="helper-text orange-text text-darken-3"><a [routerLink]="['../../settings/profile']">Click here to update bank details</a></small>
+          </div>
+        </div>
+
+        <div class="row center-align">
+          <div class="col m12 s12">
+            <button [disabled]="isWithdrawRange" class="col s12 btn btn-large waves-effect waves-red" (click)="makeWithdraw(withdrawAmount.value)">Submit</button>
+          </div>
+          <small class="helper-text">
+            <a [routerLink]="['../auto-withdraw']">Set Automatic Withdraw</a>
+          </small>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Set Auto Withdraw -->
+  <!-- <section class="row">
+    <router-outlet></router-outlet>
+  </section> -->
+
+</div>

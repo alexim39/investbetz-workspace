@@ -1,0 +1,57 @@
+<div class="profile-container">
+  <header>
+    <h5>User Profile</h5>
+    <div class="grey-text">Profile settings and overview</div>
+  </header>
+
+  <div class="row">
+    <app-profile-panel></app-profile-panel>
+    <div class="col m8 s12 z-depth-0">
+
+      <mat-accordion>
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="z-depth-1">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h6>User Profile Settings</h6>
+            </mat-panel-title>
+            <mat-panel-description> Update user profile </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>
+            <!-- User Profile Form-->
+            <app-user-details></app-user-details>
+          </p>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="z-depth-1">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h6>Bank Detail Settings</h6>
+            </mat-panel-title>
+            <mat-panel-description> Update user bank details </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>
+            <!-- Bank details Form-->
+            <app-bank-details></app-bank-details>
+          </p>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" [expanded]="true" class="z-depth-1">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h6>Auto Withdraw Settings</h6>
+            </mat-panel-title>
+            <mat-panel-description> View/remove auto withdraw </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>
+            <!-- Auto withdraw -->
+            <app-auto-withdraw></app-auto-withdraw>
+          </p>
+        </mat-expansion-panel>
+
+      </mat-accordion>
+
+      
+    </div>
+  </div>
+</div>

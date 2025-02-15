@@ -1,0 +1,140 @@
+<div class="wager-histories-container">
+
+  <div class="row">
+    <div class="title col s12">
+      <header>
+          <h5>Wager Histories</h5>
+          <div class="grey-text">See details about how our wagers goes</div>
+      </header>
+    </div>
+  </div>
+
+    <div class="row">
+
+        <div class="col s12 m9">
+
+          <mat-form-field>
+            <mat-label>Search table</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Filter data table" #input>
+          </mat-form-field>
+
+          <table mat-table [dataSource]="wagers"  class="highlight">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+          
+            <!-- Position Column -->
+            <ng-container matColumnDef="Sn">
+              <th mat-header-cell *matHeaderCellDef> S/n </th>
+              <td mat-cell *matCellDef="let wager; let i = index;"> {{ i + 1 }} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="odds">
+              <th mat-header-cell *matHeaderCellDef> Odds </th>
+              <td mat-cell *matCellDef="let wager"> {{wager.odd}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="DatesSession">
+              <th mat-header-cell *matHeaderCellDef> Dates/session </th>
+              <td mat-cell *matCellDef="let wager"> 
+                {{wager.fullDate | date }}
+                <small class="session grey-text">{{wager.session}}</small>  
+              </td>
+            </ng-container>
+          
+            <!-- status Column -->
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> Status </th>
+              <td mat-cell *matCellDef="let wager" [innerHTML]="wager.status"></td>
+            </ng-container>
+
+            <!-- game Column -->
+            <ng-container matColumnDef="game">
+              <th mat-header-cell *matHeaderCellDef> Game </th>
+              <td mat-cell *matCellDef="let wager">{{wager.games.game[0].type | titlecase}}</td>
+            </ng-container>
+
+            <!-- View games Column -->
+            <ng-container matColumnDef="viewGames">
+              <th mat-header-cell *matHeaderCellDef> View games </th>
+              <td mat-cell *matCellDef="let wager"> 
+                <a *ngIf="wager.showDetails" href="#modal1" data-target="modal1" class="modal-trigger" title="View games detail">
+                  <i (click)="viewGames(wager)" class="material-icons">pageview</i>
+                </a>
+              </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row [ngClass]="{
+              'losed-wager': losedWager(wager), 
+              'won-wager': wonWager(wager)
+              }" *matRowDef="let wager; columns: displayedColumns;">
+            </tr>
+          </table>
+
+        </div>
+
+        <div class="col s12 m3">
+          
+          <ul class="collection with-header">
+            <li class="collection-header"><h5>Wager Statistics</h5></li>
+
+            <li class="collection-item">
+              <div>
+                <small>Average Wins</small> <em class="secondary-content">{{averagWins()}}</em>
+              </div>
+            </li>
+
+            <li class="collection-item">
+              <div>
+                <small>Average Lose</small>  <em class="secondary-content">{{averageLose(statisticalWagers)}}</em>
+              </div>
+            </li>
+
+            <li class="collection-item">
+              <div>
+                <small>Running</small>  <em class="secondary-content">{{averageRunning(statisticalWagers)}}</em>
+              </div>
+            </li>
+            
+          </ul>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+
+    <div class="modal-content">
+      <h6 class="grey-text">Wager Details of {{wagerDetails.fullDate | date}} ({{wagerDetails.session}})</h6>
+      <!-- <p>A bunch of text</p> -->
+
+      <table>
+        <thead>
+          <tr>
+              <th>Game</th>
+              <th>Prediction</th>
+              <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of wagerDetails.games.game | keyvalue">
+           <!--  <td>{{item.value.game | titlecase}}</td>
+            <td>{{item.value.prediction | uppercase }}</td>
+            <td>{{item.value.status | uppercase }}</td> -->
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="modal-footer">
+      <a class="modal-close waves-effect waves-green btn red darken-1">Close</a>
+    </div>
+</div>

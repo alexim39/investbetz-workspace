@@ -1,0 +1,27 @@
+.ss-container {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+  margin-left: 2em;
+  margin-right: 2em;
+  header {
+    h5 {
+      margin-bottom: 0.2em;
+    }
+    div {
+      margin-bottom: 2em;
+      font-family: monospace;
+    }
+  }
+}
+
+.switch {
+  margin-top: 2em;
+  margin-left: 0.8em;
+}
+
+.help {
+  display: inline;
+  position: relative;
+  left: 16em;
+  top: -1.5em;
+}

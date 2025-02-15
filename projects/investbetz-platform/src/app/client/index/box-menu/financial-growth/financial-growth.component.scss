@@ -1,0 +1,20 @@
+.card {
+    .card-content {
+        .row {
+            margin-bottom: -1.5em !important;
+            .col {
+                .val {
+                    font-size: 1.2em;
+                    font-weight: bold;
+                    margin-left: -0.3em;
+                    margin-top: 0.8em;
+                }
+            }
+        }
+    }
+    .card-action {
+        div {
+            font-size: 0.8em;
+        }
+    }
+}

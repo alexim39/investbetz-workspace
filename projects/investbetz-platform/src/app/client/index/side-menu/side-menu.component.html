@@ -1,0 +1,369 @@
+<ul id="sidenav-1" class="sidenav sidenav-fixed z-depth-5 grey lighten-3">
+
+  <li title="{{ user?.signUpEmail | lowercase }}">
+    <div class="user-view center-align red lighten-2 z-depth-5">
+      <div class="user-view--img">
+        <img class="circle" [src]="img">
+      </div>
+      <div><span class="name truncate black-text">{{ user?.lastName | titlecase }} {{ user?.firstName | titlecase }}</span></div>
+      <div><span class="email">{{ user?.email | lowercase }}</span></div>
+    </div>
+  </li>
+
+  <app-balance></app-balance>
+
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+    <a [routerLink]="['../dashboard']"><i class="material-icons">dashboard</i>Dashboard</a>
+  </li>
+
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+    <a [routerLink]="['../dashboard/deposit']"><i class="material-icons">add</i>Deposit</a>
+  </li>
+
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+    <a [routerLink]="['../dashboard/withdrawal']"><i class="material-icons">remove_circle</i>Withdraw</a>
+  </li>
+
+  <li>
+    <ul class="collapsible">
+      <li style="padding-left: 1em;">
+        <div class="collapsible-header investmnt-indicator"><i class="material-icons">add_box</i>
+          <span class="streghtup">Investments</span>
+          <i class="material-icons investmnt-closed">chevron_left</i>
+          <i class="material-icons investmnt-opened">expand_more</i>
+        </div>
+        <div class="collapsible-body">
+
+          <ul class="collection" style="margin-left: -2em;">
+            <li class="collection-item grey lighten-3">
+              <a class="collection-item-link" [routerLink]="['../dashboard/investments/plans']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">Plans</a>
+            </li>
+            <li class="collection-item grey lighten-3">
+              <a class="collection-item-link" [routerLink]="['../dashboard/investments/cashout']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">CashOut</a>
+            </li>
+            <li class="collection-item grey lighten-3">
+              <a class="collection-item-link" [routerLink]="['../dashboard/investments/cashup']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">CashUp</a>
+            </li>
+            <li></li>
+          </ul>
+
+        </div>
+      </li>
+    </ul>
+  </li>
+
+
+  <li>
+    <ul class="collapsible">
+      <li style="padding-left: 1em;">
+        <div class="collapsible-header wager-indicator"><i class="material-icons">sports</i>
+          <span class="streghtup">Wagers</span>
+          <i class="material-icons wager-closed">chevron_left</i>
+          <i class="material-icons wager-opened">expand_more</i>
+        </div>
+        <div class="collapsible-body">
+
+          <ul class="collection" style="margin-left: -2em;">
+            <li class="collection-item grey lighten-3">
+              <a class="collection-item-link" [routerLink]="['../dashboard/wagers']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">Daily Wagers</a>
+            </li>
+            <li class="collection-item grey lighten-3">
+              <a class="collection-item-link" [routerLink]="['../dashboard/wagers/about']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">About Wagers</a>
+            </li>
+            <li class="collection-item grey lighten-3">
+              <a class="collection-item-link" [routerLink]="['../dashboard/wagers/histories']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">Histories</a>
+            </li>
+            <li></li>
+          </ul>
+
+        </div>
+      </li>
+    </ul>
+  </li>
+
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+    <a [routerLink]="['../dashboard/copybet']"><i class="material-icons">filter_none</i>CopyBet</a>
+  </li>
+
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+    <a [routerLink]="['../dashboard/histories']"><i class="material-icons">receipt_long</i>Transactions</a>
+  </li>
+  <li>
+
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+    <a [routerLink]="['../dashboard/calculator']"><i class="material-icons">calculate</i>Calculator</a>
+  </li>
+
+ <!--  <li>
+    <ul class="collapsible">
+      <li style="padding-left: 1em;">
+        <div class="collapsible-header financial-indicator"><i class="material-icons">monetization_on</i>
+          <span class="streghtup">Financials</span>
+          <i class="material-icons financial-closed">chevron_left</i>
+          <i class="material-icons financial-opened">expand_more</i>
+        </div>
+        <div class="collapsible-body">
+
+          <ul class="collection" style="margin-left: -2em;">
+            <li class="collection-item grey lighten-3">
+              <a class="collection-item-link" [routerLink]="['../dashboard/financials/request-loan']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">Request Loan</a>
+            </li>
+            <li class="collection-item grey lighten-3">
+              <a class="collection-item-link " [routerLink]="['../dashboard/financials/repay-loan']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">Repay Loan</a>
+            </li>
+            <li></li>
+          </ul>
+
+        </div>
+      </li>
+    </ul>
+  </li> -->
+
+  <li>
+    <ul class="collapsible">
+      <li style="padding-left: 1em;">
+        <div class="collapsible-header setting-indicator"><i class="material-icons">settings</i>
+          <span class="streghtup">Settings</span>
+          <i class="material-icons setting-closed">chevron_left</i>
+          <i class="material-icons setting-opened">expand_more</i>
+        </div>
+        <div class="collapsible-body">
+
+          <ul class="collection" style="margin-left: -2em;">
+            <li class="collection-item grey lighten-3">
+              <a class="collection-item-link" [routerLink]="['../dashboard/settings/profile']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">Profile</a>
+            </li>
+            <li class="collection-item grey lighten-3">
+              <a class="collection-item-link" [routerLink]="['../dashboard/settings/security']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">Security</a>
+            </li>
+            <li></li>
+          </ul>
+
+        </div>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <ul class="collapsible">
+      <li style="padding-left: 1em;">
+        <div class="collapsible-header feedback-indicator"><i class="material-icons">feedback</i>
+          <span class="streghtup">Feedback</span>
+          <i class="material-icons feedback-closed">chevron_left</i>
+          <i class="material-icons feedback-opened">expand_more</i>
+        </div>
+        <div class="collapsible-body">
+
+          <ul class="collection" style="margin-left: -2em;">
+            <li class="collection-item grey lighten-3">
+              <a class="collection-item-link" [routerLink]="['../dashboard/feedback/messages']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">Messages</a>
+            </li>
+            <li class="collection-item grey lighten-3">
+              <a class="collection-item-link" [routerLink]="['../dashboard/feedback/testimonial']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">Testimonial</a>
+            </li>
+            <li></li>
+          </ul>
+
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+<!--Mobile Links-->
+<ul class="sidenav z-depth-5 grey lighten-3" id="mobile-main-nav">
+
+  <li>
+    <div class="user-view center-align red lighten-2 z-depth-5">
+      <div class="user-view--img">
+        <img class="circle" [src]="img">
+      </div>
+      <div><span class="name truncate black-text">{{ user?.lastName | titlecase }} {{ user?.firstName | titlecase }}</span></div>
+      <div><span class="email">{{ user?.signUpEmail | lowercase }}</span></div>
+    </div>
+  </li>
+
+  <app-balance></app-balance>
+
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+    <a class="sidenav-close" [routerLink]="['../dashboard']"><i class="material-icons">dashboard</i>Dashboard</a>
+  </li>
+
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+    <a class="sidenav-close" [routerLink]="['../dashboard/deposit']" ><i class="material-icons">add_circle</i>Deposit</a>
+  </li>
+
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+    <a class="sidenav-close" [routerLink]="['../dashboard/withdrawal']" ><i class="material-icons">remove_circle</i>Withdraw</a>
+  </li>
+
+  <li>
+    <ul class="collapsible">
+      <li style="padding-left: 1em;">
+        <div class="collapsible-header investmnt-indicator"><i class="material-icons">add_box</i>
+          <span class="streghtup">Investments</span>
+          <i class="material-icons investmnt-closed">chevron_left</i>
+          <i class="material-icons investmnt-opened">expand_more</i>
+        </div>
+        <div class="collapsible-body">
+
+          <ul class="collection" style="margin-left: -2em;">
+            <li class="collection-item grey lighten-3">
+              <a class="sidenav-close collection-item-link" [routerLink]="['../dashboard/investments/plans']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">Plans</a>
+            </li>
+            <li class="collection-item grey lighten-3">
+              <a class="sidenav-close collection-item-link" [routerLink]="['../dashboard/investments/cashout']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">CashOut</a>
+            </li>
+            <li class="collection-item grey lighten-3">
+              <a class="sidenav-close collection-item-link" [routerLink]="['../dashboard/investments/cashup']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">CashUp</a>
+            </li>
+            <li></li>
+          </ul>
+
+        </div>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <ul class="collapsible">
+      <li style="padding-left: 1em;">
+        <div class="collapsible-header wager-indicator"><i class="material-icons">games</i>
+          <span class="streghtup">Wagers</span>
+          <i class="material-icons wager-closed">chevron_left</i>
+          <i class="material-icons wager-opened">expand_more</i>
+        </div>
+        <div class="collapsible-body">
+
+          <ul class="collection" style="margin-left: -2em;">
+            <li class="collection-item grey lighten-3">
+              <a class="sidenav-close collection-item-link" [routerLink]="['../dashboard/wagers']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">Daily Wagers</a>
+            </li>
+            <li class="collection-item grey lighten-3">
+              <a class="sidenav-close collection-item-link" [routerLink]="['../dashboard/wagers/about']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">About Wagers</a>
+            </li>
+            <li class="collection-item grey lighten-3">
+              <a class="sidenav-close collection-item-link" [routerLink]="['../dashboard/wagers/histories']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">Histories</a>
+            </li>
+            <li></li>
+          </ul>
+
+        </div>
+      </li>
+    </ul>
+  </li>
+
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+    <a class="sidenav-close" [routerLink]="['../dashboard/copybet']"><i class="material-icons">filter_none</i>CopyBet</a>
+  </li>
+
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+    <a class="sidenav-close" [routerLink]="['../dashboard/histories']" ><i class="material-icons">account_balance_wallet</i>Transaction Histories</a>
+  </li>
+
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+    <a class="sidenav-close" [routerLink]="['../dashboard/calculator']" ><i class="material-icons">pie_chart</i>Calculator</a>
+  </li>
+
+  <li>
+    <ul class="collapsible">
+      <li style="padding-left: 1em;">
+        <div class="collapsible-header financial-indicator"><i class="material-icons">monetization_on</i>
+          <span class="streghtup">Financials</span>
+          <i class="material-icons financial-closed">chevron_left</i>
+          <i class="material-icons financial-opened">expand_more</i>
+        </div>
+        <div class="collapsible-body">
+
+          <ul class="collection" style="margin-left: -2em;">
+            <li class="collection-item grey lighten-3">
+              <a class="sidenav-close collection-item-link" [routerLink]="['../dashboard/financials/request-loan']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">Request Loan</a>
+            </li>
+            <li class="collection-item grey lighten-3">
+              <a class="sidenav-close collection-item-link" [routerLink]="['../dashboard/financials/repay-loan']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">Repay Loan</a>
+            </li>
+            <li></li>
+          </ul>
+
+        </div>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <ul class="collapsible">
+      <li style="padding-left: 1em;">
+        <div class="collapsible-header setting-indicator"><i class="material-icons">settings</i>
+          <span class="streghtup">Settings</span>
+          <i class="material-icons setting-closed">chevron_left</i>
+          <i class="material-icons setting-opened">expand_more</i>
+        </div>
+        <div class="collapsible-body">
+
+          <ul class="collection" style="margin-left: -2em;">
+            <li class="collection-item grey lighten-3">
+              <a class="sidenav-close collection-item-link" [routerLink]="['../dashboard/settings/dashboard']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">dashboard</a>
+            </li>
+            <li class="collection-item grey lighten-3">
+              <a class="sidenav-close collection-item-link" [routerLink]="['../dashboard/settings/security']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">Security</a>
+            </li>
+            <li></li>
+          </ul>
+
+        </div>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <!-- <app-notifications></app-notifications> -->
+    <a class="sidenav-close" href="">
+      <i class="material-icons left">notifications</i>Notifications<span class="new badge lime accent-4">0</span>
+    </a>
+  </li>
+
+  <li>
+    <ul class="collapsible">
+      <li style="padding-left: 1em;">
+        <div class="collapsible-header feedback-indicator"><i class="material-icons">feedback</i>
+          <span class="streghtup">Feedback</span>
+          <i class="material-icons feedback-closed">chevron_left</i>
+          <i class="material-icons feedback-opened">expand_more</i>
+        </div>
+        <div class="collapsible-body">
+
+          <ul class="collection" style="margin-left: -2em;">
+            <li class="collection-item grey lighten-3">
+              <a class="sidenav-close collection-item-link" [routerLink]="['../dashboard/feedback/messages']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">Messages</a>
+            </li>
+            <li class="sidenav-close  collection-item grey lighten-3">
+              <a class="sidenav-close collection-item-link" [routerLink]="['../dashboard/feedback/testimonial']" routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">Testimonial</a>
+            </li>
+            <li></li>
+          </ul>
+
+        </div>
+      </li>
+    </ul>
+  </li>
+
+  
+  <li *ngIf="isAdmin"  routerLinkActive="nexted-active" [routerLinkActiveOptions]="{exact:true}">
+    <a class="sidenav-close collection-item-link" [routerLink]="['../dashboard/admin']"><i class="material-icons">settings</i>Administrator</a>
+  </li>
+
+  <li>
+    <a (click)="signOut()"><i class="material-icons left">power_settings_new</i>Sign Out</a>
+  </li>
+  <li></li>
+</ul>

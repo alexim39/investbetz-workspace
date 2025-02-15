@@ -1,0 +1,23 @@
+.container {
+  margin-top: 3em;
+  .section {
+    padding: 2em 5em;
+    border-radius: 10px;
+    .row {
+      .col {
+        h5 {
+          margin-bottom: 2em;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+/* Extra small devices (phones, up to 480px) */
+@media screen and (max-width: 767px) {
+  .section {
+    padding: 1em 1em;
+  }
+}
+

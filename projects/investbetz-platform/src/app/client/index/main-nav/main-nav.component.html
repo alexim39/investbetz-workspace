@@ -1,0 +1,45 @@
+<nav class="nav-extended">
+  <div class="nav-wrapper z-depth-5">
+    <a class="brand-logo" [routerLink]="['../dashboard']">investBetz</a>
+    <!--Mobile Responsiveness-->
+    <a href="#" data-target="mobile-main-nav" class="sidenav-trigger"><i class="material-icons" style="color: #212121;">menu</i></a>
+    <ul id="main-nav-mobile" class="right hide-on-med-and-down">
+
+      <!-- Admin setting page - shows only if userType is admin -->
+     <!--  <li *ngIf="isAdmin">
+        <a [routerLink]="['../dashboard/admin']">Administrative settings <i class="material-icons right">settings</i></a>
+      </li> -->
+
+      <li>
+        <app-notifications></app-notifications>
+      </li>
+
+     <li>
+        <a (click)="signOut()"><i class="material-icons left">power_settings_new</i>Sign out</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="nav-content z-depth-5">
+    <ul class="tabs tabs-transparent">
+      <li class="tab">
+        <a [routerLink]="['../dashboard/investments/cashout']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">CashOut Plan</a>
+      </li>
+      <li class="tab">
+        <a [routerLink]="['../dashboard/investments/cashup']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">CashUp Plan</a>
+      </li>
+      <li class="tab">
+        <a [routerLink]="['../dashboard/wagers']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Wagers</a>
+      </li>
+      <li class="tab">
+        <a [routerLink]="['../dashboard/copybet']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">CopyBet</a>
+      </li>
+      <li class="tab">
+        <a [routerLink]="['../dashboard/deposit']">Deposit</a>
+      </li>
+      <li class="tab">
+        <a [routerLink]="['../dashboard/withdrawal']">Withdraw</a>
+      </li>
+    </ul>
+  </div>
+</nav>

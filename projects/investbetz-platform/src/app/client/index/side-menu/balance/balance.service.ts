@@ -1,0 +1,59 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
+
+const httpOptions = {
+  withCredentials: true,
+  headers: new HttpHeaders({
+  'Content-Type': 'application/json'
+  })
+};
+
+@Injectable({
+  providedIn: 'root'
+})
+export class BalanceService {
+
+  private domain = `http://localhost:8383`;
+
+  constructor(private http: HttpClient) { }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+        // A client-side or network error occured. Handle accordingly
+        // console.error('An error occured:', error.error.message);
+        return throwError(`Request failed due to network error, please try again`);
+    } else {
+        // Backend returned an unsuccessful response code.
+        // The repsonse body contains clues as to what went wrong
+        //console.error(`Backend error code: ${error.status}, backend message: ${error.error}`);
+        return throwError(error);
+    }
+    // Return an observable with user-facing error msg
+    // return throwError(`Something went wrong, please try again.`)
+  }
+
+  // Client deposit balance
+  public getClientDepositAccountBalance(clientId: string): Observable<number>{
+    const depositBalacneUrl = `${this.domain}/api/Clients/balance/deposit/${clientId}`;
+
+    return this.http.get<any>(depositBalacneUrl, httpOptions)
+    .pipe(
+        retry(2),
+        catchError(this.handleError)            
+    );
+  }
+
+  // Calculate and return client withdrawable balance
+  public getClientWithdrawableAccountBalance(clientId: string): Observable<number>{
+    const withdrawableBalanceUrl = `${this.domain}/api/Clients/balance/withdrawable/${clientId}`;
+
+    return this.http.get<any>(withdrawableBalanceUrl, httpOptions)
+    .pipe(
+        retry(2),
+        catchError(this.handleError)            
+    );
+  }
+
+}

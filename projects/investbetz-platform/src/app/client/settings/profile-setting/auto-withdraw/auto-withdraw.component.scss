@@ -1,0 +1,28 @@
+
+.container {
+    .row {
+        .divider {
+            margin-bottom: 4em;
+        }
+        table {
+            thead {
+                tr {
+                    th {
+                        font-size: 0.6em;
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    td {
+                        font-size: 0.8em;
+                        color: #ef5350;
+                        i {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,12 @@
+<div class="readMsg-container">
+    <a [routerLink]="['../../']" class="x grey-text text-darken-1"> <i class="material-icons red-text">close</i> </a>
+  
+    <div class="readMsgPanel z-depth-5">
+  
+      <h5 class="center-align">{{msg.msgSubject | titlecase}}</h5>
+        
+        <div class="msgViewer">
+            {{titleCaseWord(msg.msgContent)}}
+        </div>
+    </div>
+  </div>

@@ -1,0 +1,55 @@
+<div class="testimonial-container">
+  <div class="row z-depth-5">
+
+    <h5 class="center-align">Six Questions About Our Services</h5>
+      <form class="row" (ngSubmit)="testimonialSubmit(testimonialForm.value)" [formGroup]="testimonialForm" autocomplete="off" style="padding-left: 5rem; padding-right: 5rem;">
+
+          <div class="input-field col m6 s12">
+            <input id="q1" type="text" class="validate" formControlName="situationBefore">
+            <label for="q1">What was your situation before you started using our services?</label>
+          </div>
+
+          <div class="input-field col m6 s12">
+            <input id="q4" type="text" class="validate" formControlName="resultsFromService">
+            <label for="q4">What results did you get from our services?</label>
+          </div>
+
+          <div class="input-field col s12">
+            <input id="q2" type="text" class="validate" formControlName="coreProblem">
+            <label for="q2">What was the core problem you want to solve by using our services?</label>
+          </div>
+
+          <div class="input-field col s12">
+            <input id="q3" type="text" class="validate" formControlName="whatHesitation">
+            <label for="q3">What hesitation did you have about using our services i.e Where you reluctant about any of our services or app feature?</label>
+          </div>
+
+        <div class="input-field col s12">
+          <input id="q5" type="text" class="validate" formControlName="specificFeatures">
+          <label for="q5">What are 3 specific features you enjoy about our services/app</label>
+        </div>
+
+        <div class="input-field col m6 s12">
+          <input id="q6" type="text" class="validate" formControlName="recommendation">
+          <label for="q6">Would you recommend us to someone else?</label>
+        </div>
+
+        <div class="input-field col m6 s12">
+          <input id="q7" type="text" class="validate" formControlName="anythingElse">
+          <label for="q7">Anything else you would like to add?</label>
+        </div>
+
+        <div class="input-field col s12 m6">
+          <label>
+            <input type="checkbox" checked="checked"  formControlName="testimonialCheck" />
+            <span>You can use my response for testimonial</span>
+          </label>
+        </div>
+
+        <div class="input-field col s12" style="padding-top: 3rem;">
+          <button class="btn btn-large waves-effect waves-red col s6" type='submit' [disabled]="!testimonialForm.valid">Submit</button>
+        </div>
+
+      </form>
+  </div>
+</div>

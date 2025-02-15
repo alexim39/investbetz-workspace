@@ -1,0 +1,35 @@
+
+/* .btn-floating {
+    width: 35px;
+    height: 38px;
+    background-color: #ffcdd2 !important;
+} */
+
+.col {
+    height: auto; 
+    border-radius: 5px;
+    .user-view {
+    .user-view--img {
+        margin-top: 2em;
+        img {
+        height: 80px;
+        width: 80px;
+        }
+    }
+    }
+}
+
+
+ul {
+    .collection-header {
+        text-align: center;
+    }
+    .collection-item {
+        em {
+            position: absolute;
+            left: 8em;
+            overflow:auto; 
+            width: 16em;
+        }
+    }
+}

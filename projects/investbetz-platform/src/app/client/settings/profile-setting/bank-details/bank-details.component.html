@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+
+    <h6 class="grey-text text-lighten-1">Bank Withdrawal Details</h6>
+    <div class="divider"></div>
+
+    <form [formGroup]="bankDetailForm" (ngSubmit)="bankDetailFormSubmit(bankDetailForm.value)" autocomplete="off">
+
+      <div class="input-field col m6 s12 mobileSparce">
+        <input id="accountNo" type="text" formControlName="accountNo" [ngModel]="accountNo" class="validate" maxlength="10">
+        <label for="accountNo">Enter Account Number</label>
+        <small class="helper-text invalid" *ngIf="!bankDetailForm.controls['accountNo'].valid && bankDetailForm.controls['accountNo'].touched">
+          <span *ngIf="bankDetailForm.controls['accountNo'].errors?.['required']">Your account number is required</span>
+        </small>
+      </div>
+
+      <div class="input-field col m6 s12">
+        <select class="icons" formControlName="bankName" [ngModel]="bankName">
+          <option disabled selected>Banks Options</option>
+          <option value="Access Bank" data-icon="./../../../assets/img/banks/access.png" class="left">Access Bank</option>
+          <!-- <option value="Access Diamond Bank" data-icon="./../../../assets/img/banks/access-diamond.png" class="left">Access Diamond Bank</option> -->
+          <option value="Ecobank Nigeria" data-icon="./../../../assets/img/banks/ecobank.png" class="left">Ecobank Nigeria</option>
+          <option value="Enterprise Bank Limited" data-icon="./../../../assets/img/banks/enterprise.jpeg" class="left">Enterprise Bank Limited</option>
+          <option value="Fidelity Bank Nigeria" data-icon="./../../../assets/img/banks/fidelity.jpeg" class="left">Fidelity Bank Nigeria</option>
+          <option value="First Bank of Nigeria" data-icon="./../../../assets/img/banks/FirstBank.jpg.png" class="left">First Bank of Nigeria</option>
+          <option value="First City Monument Bank" data-icon="./../../../assets/img/banks/FCMB.jpg" class="left">First City Monument Bank</option>
+          <option value="Guaranty Trust Bank" data-icon="./../../../assets/img/banks/gtb.png" class="left">Guaranty Trust Bank</option>
+          <option value="Heritage Bank Plc" data-icon="./../../../assets/img/banks/Heritage.jpg" class="left">Heritage Bank Plc</option>
+          <option value="Keystone Bank Limited" data-icon="./../../../assets/img/banks/keystone.jpeg" class="left">Keystone Bank Limited</option>
+          <option value="Polaris Bank" data-icon="./../../../assets/img/banks/polaris.jpeg" class="left">Polaris Bank</option>
+          <option value="Stanbic IBTC Bank Nigeria Limited" data-icon="./../../../assets/img/banks/stanbic.png" class="left">Stanbic IBTC Bank Nigeria Limited</option>
+          <option value="Standard Chartered Bank" data-icon="./../../../assets/img/banks/standard.jpeg" class="left">Standard Chartered Bank</option>
+          <option value="Sterling Bank" data-icon="./../../../assets/img/banks/Sterling.jpg" class="left">Sterling Bank</option>
+          <option value="Union Bank of Nigeria" data-icon="./../../../assets/img/banks/union.jpeg" class="left">Union Bank of Nigeria</option>
+          <option value="United Bank for Africa" data-icon="./../../../assets/img/banks/uba.png" class="left">United Bank for Africa</option>
+          <option value="Unity Bank Plc" data-icon="./../../../assets/img/banks/unity.jpeg" class="left">Unity Bank Plc</option>
+          <option value="Wema Bank" data-icon="./../../../assets/img/banks/wema.png" class="left">Wema Bank</option>
+          <option value="Zenith Bank" data-icon="./../../../assets/img/banks/zenith.png" class="left">Zenith Bank</option>
+          <option value="Jaiz Bank Limited" data-icon="./../../../assets/img/banks/jaiz.png" class="left">Jaiz Bank Limited</option>
+          <option value="FCMB Group Plc" data-icon="./../../../assets/img/banks/FCMB.jpg" class="left">FCMB Group Plc</option>
+          <option value="Stanbic IBTC Holdings Plc" data-icon="./../../../assets/img/banks/stanbic.png" class="left">Stanbic IBTC Holdings Plc</option>
+        </select>
+        <label>Choose Withdraw Bank</label>
+        <small class="helper-text orange-text text-darken-3">
+          NOTE: The bank account name should be same as name on your profile
+        </small>
+      </div>
+
+      <div class="row">
+        <button type="submit" [disabled]="bankDetailForm.invalid || loading" class="col s12 btn btn-large waves-effect waves-red">
+          Submit
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
