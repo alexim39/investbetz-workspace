@@ -1,0 +1,26 @@
+
+/*--footer-bottom--*/
+.footer-bottom {
+    /*background-color: #dce0e8;*/
+    padding: 2em 0;
+    text-align: center;
+}
+.footer-bottom p {
+    font-size: 0.8em;
+    margin: 0.8em;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+.legal {
+  text-align: justify;
+  margin-bottom: 3em !important;
+}
+
+
+/* Extra small devices (phones, up to 480px) */
+@media screen and (max-width: 767px) {
+    .footer-bottom p {
+        font-size: 0.4em;
+
+    }
+}

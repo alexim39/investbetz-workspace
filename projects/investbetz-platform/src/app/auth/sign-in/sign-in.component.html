@@ -1,0 +1,83 @@
+<!-- Sign-In Form Template -->
+<form [formGroup]="signInForm" (ngSubmit)="onSubmit(signInForm.value)" autocomplete="off">
+    <!-- Email Input Field -->
+    <div class="row">
+      <div class="input-field col s12">
+        <input
+          autofocus
+          id="email"
+          type="email"
+          class="validate"
+          formControlName="email"
+          aria-describedby="emailHelp"
+          aria-required="true"
+        />
+        <label for="email">Enter your email</label>
+        <small id="emailHelp" class="helper-text invalid" *ngIf="signInForm.get('email')?.invalid && signInForm.get('email')?.touched">
+          <ng-container *ngIf="signInForm.get('email')?.errors?.['required']">
+            Your email is required.
+          </ng-container>
+          <ng-container *ngIf="signInForm.get('email')?.errors?.['email']">
+            Your email is invalid.
+          </ng-container>
+        </small>
+      </div>
+    </div>
+  
+    <!-- Password Input Field -->
+    <div class="row">
+      <div class="input-field col s12">
+        <input
+          id="psswd"
+          type="password"
+          class="validate"
+          formControlName="psswd"
+          appAppPasswordToggle
+          aria-describedby="passwordHelp"
+          aria-required="true"
+        />
+        <label for="psswd">Enter your password</label>
+        <small id="passwordHelp" class="helper-text p-hint">
+          Password must be a minimum of 6 characters with at least one number.
+        </small>
+        <small class="helper-text invalid" *ngIf="signInForm.get('psswd')?.invalid && signInForm.get('psswd')?.touched">
+          <ng-container *ngIf="signInForm.get('psswd')?.errors?.['required']">
+            Your password is required.
+          </ng-container>
+          <ng-container *ngIf="signInForm.get('psswd')?.errors?.['minlength']">
+            Password must be at least 6 characters.
+          </ng-container>
+        </small>
+      </div>
+  
+      <!-- Forgot Password Link -->
+      <div class="col s12" style="text-align: right;">
+        <a class="orange-text" [routerLink]="['../home/forgot-password']">
+          <strong>Forgot Password?</strong>
+        </a>
+      </div>
+    </div>
+  
+    <!-- Error Message Display -->
+    <div class="row" *ngIf="errorMessage">
+      <div class="invalid" [@fadeInOut]>
+        <span>{{ errorMessage }}</span>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="isLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+  
+    <!-- Submit Button -->
+    <div class="row">
+      <button
+        type="submit"
+        class="col s12 btn btn-large waves-effect waves-red"
+        [disabled]="!signInForm.valid || isLoading">
+        Submit
+      </button>
+    </div>
+
+  </form>
+  

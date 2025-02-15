@@ -1,0 +1,51 @@
+<footer class="footer z-depth-5 red lighten-2">
+  <div class="container">
+    <div class="row">
+
+      <div class="footer-grids col xl3 l3 m6 s12" style="margin-top: -2.7em;">
+        <h2><a class="footer-grids__logo" routerLink="/home">investBetz</a></h2>
+        <div style="margin-top: -2em; text-align: justify; width: 15em; color: #212121;">
+          InvestBetz offers a new way to play the game. We combine the excitement of strategic betting with the disciplined approach of investment management, all in one convenient platform.
+        </div>
+        
+        <!-- <p>+234 808 038 6208</p> -->
+        <!-- <p>+234 905 677 4375</p> -->
+      </div>
+
+      <div class="footer-grids col xl3 l3 m6 s12">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a [routerLink]="['/home']">Home</a></li>
+          <li><a [routerLink]="['/#']">About Us</a></li>
+          <li><a [routerLink]="['/#']">How It Works</a></li>
+          <li><a [routerLink]="['/#']">Plans</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-grids col xl3 l3 m6 s12">
+        <h4>Support & Info</h4>
+        <p style="margin-top: -1em;"><a href="mailto:support@investbetz.com">support&#64;investbetz.com</a></p>
+        <ul>
+          <li><a [routerLink]="['/#']">Help Center</a></li>
+          <li><a [routerLink]="['/#']">Contact Us</a></li>
+          <li><a [routerLink]="['/#']">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-grids col xl3 l3 m6 s12">
+        <h4>Stay Connected</h4>
+        <p>Get news, events and updates relating to investbetz sent to your mail box. No spamming<p>
+        <form [formGroup]="newsLetterForm">
+          <div class="input-field">
+            <input type="email"  id="newsLetterEmail" formControlName="newsLetterEmail" class="validate">
+            <label for="newsLetterEmail">Enter Email</label>
+          </div>
+
+          <button class="btn btn-small waves-effect waves-red" type="submit" name="action">Submit</button>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</footer>

@@ -1,0 +1,60 @@
+<section class="row z-depth-5">
+
+  <header class="banner">
+
+    <div class="banner__info">
+
+      <video autoplay muted loop poster="img/bck.png">
+        <source src="video/bck1.webm" type="video/webm">
+      </video>
+
+      <div class="signin modal-trigger" data-target="auth">Sign in <i class="fas fa-user-lock"></i></div>
+
+      <div class="logo">
+        <a class="logo__text" [routerLink]="['']">investBetz</a>
+      </div>
+
+      <div class="banner__info__text">
+        <div class="container">
+          <div class="banner__info__heading row">
+            <div class="col xl12 l12 m12 s12">
+
+
+              <div class="carousel carousel-slider">
+                <div class="carousel-item" href="#one!">
+                  <label class="banner_info__heading-label">Let's play the game for you,</label> let's bear the risk of loosing the bets
+                </div>
+                <div class="carousel-item" href="#two!">
+                  Get 1% on your investment everyday OR Get 2% on your investment for 1 Week
+                </div>
+                <div class="carousel-item" href="#three!">
+                  Use our Wager to beat the bookies and win always
+                </div>
+                <div class="carousel-item" href="#three!">
+                  Try <label class="banner_info__heading-label">CashOut for 1 week </label> or  <label class="banner_info__heading-label"> CashUp for few months </label>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+          <div class="banner__info__sub-heading row">
+            <div class="col xl12 l12 m12 s12">
+              "Majority have suffered financial loss to bookies in some form by injected humour." - <strong class="author">Alex Imenwo</strong>
+              <!-- Let's bear the risk of lossing your money, deposit a minimum of &#8358;1,000.00 and - <strong> "Get 2X your deposit After the game ends"</strong> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <app-call-to-action></app-call-to-action>
+
+    </div>
+  </header>
+
+</section>
+
+ <div id="auth" class="modal auth">
+    <!-- Auth -->
+    <app-auth></app-auth>
+</div>

@@ -1,0 +1,73 @@
+/*--footer--*/
+.footer {
+    padding: 4em 0 3em;
+    color: #fff;
+}
+
+.footer h4 {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    font-family: 'Exo-Regular';
+}
+
+.footer-grids ul li {
+    margin-bottom: 1em;
+}
+
+.footer-grids ul li a {
+    color: #212121;
+    font-size: 1em;
+}
+
+.footer-grids ul li a:hover {
+    color: #212121;
+}
+
+.footer-grids__logo, .footer-grids__logo:hover, .footer-grids__logo:focus {
+    font-family: 'Playball-Regular';
+    text-decoration: none;
+    font-size: 0.5em !important;
+    color: #212121;
+}
+
+.footer-grids__social-media {
+    margin-right: 1em;
+    font-size: 1.6em;
+    color: #adaaaa !important;
+}
+
+.footer-grids__social-media--fb:hover {
+    color: #3b5998 !important;
+}
+
+.footer-grids__social-media--twitter:hover {
+    color: #38A1F3 !important;
+}
+
+.footer-grids p a{
+    color:#fff;
+}
+
+.footer-grids p {
+    color: #212121;
+    font-size:1em;
+    margin-top: 0.1em;
+    line-height: 1.5em;
+}
+
+.footer-grids form {
+    margin-top: 1.2em;
+}
+
+/* label focus color */
+.input-field input + label {
+    color: white;
+}
+/* label underline focus color */
+.input-field input {
+    border-bottom: 1px solid white;
+}
+
+
+
+/*--//footer--*/

@@ -1,0 +1,130 @@
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url('../public/fonts/Roboto-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Playball-Regular';
+    src: url('../public/fonts/Playball-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Exo-ExtraBold';
+    src: url('../public/fonts/Exo-ExtraBold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Exo-Regular';
+    src: url('../public/fonts/Exo-Regular.ttf') format('truetype');
+} 
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+
+/*-- Odd Analyser Bar Colors --*/
+.w-25 {
+  width: 25%;
+  background: linear-gradient(to right, red 0%, red 25%);
+}
+
+.w-50 {
+  width: 50%;
+  background: linear-gradient(to right, orange 25%, orange 50%);
+}
+
+.w-75 {
+  width: 75%;
+  background: linear-gradient(to right, #2962ff 50%, #2962ff 75%);
+}
+
+.w-100 {
+  width: 100%;
+  background: linear-gradient(to right, green 75%, green 100%);
+}
+
+/*-- Password input toggle --*/
+.password-toggle {
+  position: relative;
+  bottom: 2em;
+  color: #9e9a9a;
+  cursor: pointer !important;
+  float: right;
+}
+
+/*-- Input field msg color --*/
+.snackbar {
+  margin: auto;
+  position: absolute;
+  left: 45%;
+  bottom: 0em;
+  z-index: 1;
+}
+
+.error {
+  background: #c62828 !important;
+  color: #ffffff;
+  font-size: small;
+}
+
+.success {
+  background: #43a047  !important;
+  color: #ffffff;
+  font-size: small;
+}
+
+.invalid {
+  color: #c62828 !important;
+  font-size: small;
+}
+
+.valid {
+  color: #43a047  !important;
+  font-size: small;
+}
+
+/* Extra small devices (phones, up to 480px) */
+@media screen and (max-width: 767px) {
+  .auth-msg {
+    z-index: 1000;
+    bottom: -20em !important;
+    left: -10em;
+  }
+}
+
+/* -- Loading Spinner -- */
+.spinner {
+  width: 10px;
+}
+
+.spinner > div {
+  width: 12px;
+  height: 12px;
+  background-color: rgb(7, 6, 6);
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

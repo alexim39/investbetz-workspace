@@ -1,0 +1,37 @@
+html {
+  font-family: "Nunito";
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Raleway";
+}
+
+.card-title {
+  font-weight: bolder;
+}
+
+.title h3 {
+  margin: 0;
+  padding: 40px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.card {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 8em;
+}
+
+/* i[class=password-toggle] {
+  left: 2em !important;
+} */
+
+.alert-p {
+  color: #c62828;
+  margin-top: -0.1em;
+}
+
+.p-hint {
+  margin-top: -0.5em;
+}
