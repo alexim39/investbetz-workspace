@@ -18,7 +18,7 @@ declare const $: any;
 export class ProfilePanelComponent implements OnInit {
 
   // User image source
-  img: string = './../../../assets/img/users/template.png';
+  img: string = 'img/users/template.png';
   private user: any //UserInterface;
 
   public lastName!: string;

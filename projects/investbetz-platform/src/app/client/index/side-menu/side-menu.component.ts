@@ -1,82 +1,71 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, RouterLinkActive, RouterLink } from '@angular/router';
-
-import { SideMenuService } from './side-menu.service';
-
 import { BalanceComponent } from './balance/balance.component';
-import { NgIf, LowerCasePipe, TitleCasePipe } from '@angular/common';
+import { CommonModule, LowerCasePipe, TitleCasePipe } from '@angular/common';
 import { AuthService } from '../../../auth/auth.service';
 
-// declare jquery as any
+// Declare jQuery as any
 declare const $: any;
 
 @Component({
-    selector: 'app-side-menu',
-    templateUrl: './side-menu.component.html',
-    styleUrls: ['./side-menu.component.scss'],
-    imports: [BalanceComponent, RouterLinkActive, RouterLink, NgIf, LowerCasePipe, TitleCasePipe],
-    providers: [SideMenuService]
+  selector: 'async-side-menu',
+  templateUrl: './side-menu.component.html',
+  styleUrls: ['./side-menu.component.scss'],
+  imports: [BalanceComponent, CommonModule, RouterLinkActive, RouterLink, LowerCasePipe, TitleCasePipe],
 })
-export class SideMenuComponent implements OnInit {
+export class SideMenuComponent implements OnInit, AfterViewInit {
 
-  public isAdmin!: boolean;
-
-  // User image source
   img: string = 'img/users/template.png';
-
   public user: any;
+
+  // Sample data for the Invest menu with nested children
+  investMenuData = [
+    {
+      label: 'New Plan',
+      // This item has a nested subsubmenu
+      children: [
+        { label: 'CashOut', routerLink: ['../dashboard/investments/cashout'] },
+        { label: 'CashUp', routerLink: ['../dashboard/investments/cashup'] }
+
+      ]
+    },
+    {
+      label: 'Active Plans',
+      routerLink: ['../dashboard/investments/active']
+    },
+   /*  {
+      label: 'Plans History',
+      routerLink: ['../dashboard/investments/hisotry']
+    } */
+  ];
 
   constructor(
     private auth: AuthService, 
-    private sideMenuService: SideMenuService, 
     private router: Router
   ) { }
 
-  public signOut() {
-    // Call AuthService logout Method
-    this.auth.signOut().subscribe((response: any,) => {
-      if (response.message === 'logout') {
-        this.router.navigate(['/home']);
-      }
-    }, (error: Error) => {
-      console.error(error)
-    });
-  }
-
-
   ngOnInit() {
-
-    // Load Current Client Details
+    // Load current client details
     this.auth.profile().subscribe((user: any) => {
       this.user = user;
-      
-      if (user.userType === 'admin') {
-        this.isAdmin = true;
-      }
     }, (error: Error) => {
       console.error(error);
       this.router.navigate(['/home']);
-    })
+    });
 
     $(document).ready(() => {
-      // Init Sidenave
+      // Initialize sidenav
       $('.sidenav').sidenav({
-        draggable: true, // Choose whether you can drag to open on touch screens
-        edge: 'left', // Choose the horizontal origin
-
+        draggable: true,
+        edge: 'left',
       });
 
-      // Init Collapsible
-      $('.collapsible').collapsible();
+      // Initialize dropdown (if any)
+      $('.dropdown-trigger').dropdown({ coverTrigger: false });
 
-      // Init dropdown
-      $('.dropdown-trigger').dropdown({
-        coverTrigger: false
-      });
-
-       // Toggle setting indicator
-       $('.investmnt-closed').show();
-       $('.investmnt-indicator').click(() => {
+      // Toggle top-level invest menu indicators
+      $('.investmnt-closed').show();
+      $('.investmnt-indicator').click(() => {
         if ($('.investmnt-closed').is(':visible')) {
           $('.investmnt-closed').hide(600);
           $('.investmnt-opened').show(600);
@@ -86,7 +75,7 @@ export class SideMenuComponent implements OnInit {
         }
       });
 
-      // Toggle setting indicator
+      // Toggle settings menu indicators
       $('.setting-closed').show();
       $('.setting-indicator').click(() => {
         if ($('.setting-closed').is(':visible')) {
@@ -98,7 +87,7 @@ export class SideMenuComponent implements OnInit {
         }
       });
 
-      // Toggle feedback indicator
+      // Toggle feedback menu indicators
       $('.feedback-closed').show();
       $('.feedback-indicator').click(() => {
         if ($('.feedback-closed').is(':visible')) {
@@ -110,7 +99,7 @@ export class SideMenuComponent implements OnInit {
         }
       });
 
-      // Toggle wager indicator
+      // Toggle wager menu indicators
       $('.wager-closed').show();
       $('.wager-indicator').click(() => {
         if ($('.wager-closed').is(':visible')) {
@@ -122,7 +111,7 @@ export class SideMenuComponent implements OnInit {
         }
       });
 
-      // Toggle financial indicator
+      // Toggle financial menu indicators
       $('.financial-closed').show();
       $('.financial-indicator').click(() => {
         if ($('.financial-closed').is(':visible')) {
@@ -133,8 +122,31 @@ export class SideMenuComponent implements OnInit {
           $('.financial-opened').hide(600);
         }
       });
-
     });
   }
 
+  // After the view  is rendered, initialize collapsible elements and nested header toggling
+  ngAfterViewInit() {
+    $('.collapsible').collapsible();
+
+    // For each nested header, toggle its icons when clicked.
+    $('.nested-header').each(function(this: HTMLElement) {
+      const $header = $(this);
+      // Ensure the closed icon is visible initially and opened is hidden.
+      $header.find('.nested-collapsible-closed').show();
+      $header.find('.nested-collapsible-opened').hide();
+
+      $header.on('click', function(this: HTMLElement) {
+        const closedIcon = $header.find('.nested-collapsible-closed');
+        const openedIcon = $header.find('.nested-collapsible-opened');
+        if (closedIcon.is(':visible')) {
+          closedIcon.hide(600);
+          openedIcon.show(600);
+        } else {
+          closedIcon.show(600);
+          openedIcon.hide(600);
+        }
+      });
+    });
+  }
 }

@@ -101,6 +101,7 @@ export class SignInComponent implements OnDestroy {
       next: (response: any) => {
         this.isLoading = false;
         if (response.message === 'done') {
+          localStorage.setItem('authToken', response.message); // Save token to localStorage
           this.router.navigate(['/dashboard']);
         }
       },

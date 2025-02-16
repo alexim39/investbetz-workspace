@@ -1,6 +1,6 @@
 import { Clients } from '../shared/classes/clients';
 
-export class UserDashboardClass extends Clients { // UserDashboardClass is technically Clients (a type of Users) class
+export class UserDashboardClass extends Clients {
 
   constructor() {
     super();

@@ -4,58 +4,47 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 
-// declare jquery as any
-declare const $: any;
-
 @Component({
-    selector: 'app-cashup-calculator',
-    templateUrl: './cashup-calculator.component.html',
-    styleUrls: ['./cashup-calculator.component.scss'],
-    imports: [FormsModule, RouterLink, CurrencyPipe]
+  selector: 'app-cashup-calculator',
+  templateUrl: './cashup-calculator.component.html',
+  styleUrls: ['./cashup-calculator.component.scss'],
+  imports: [FormsModule, RouterLink, CurrencyPipe]
 })
 export class CashupCalculatorComponent extends CalculatorClass implements OnInit {
 
-  // Cashup properties
-  cashupField!: number;
-  cashupSelect!: number;
-  cashupProfit: number;
-  cashupPayout: number;
+  cashupField: number | undefined = undefined;
+  cashupSelect: number | undefined = undefined;
+  cashupProfit: number = 0;
+  cashupPayout: number = 0;
   cashupPercentage: number;
 
-  cashupBtn: boolean;
+  cashupBtn: boolean = true;
 
-  constructor() { 
-    // Call parent class constructor
+  constructor() {
     super();
-
-    // Init Cashup properties
-    this.cashupPercentage = super.get_X_Percent(1); // 1% of amount
-    this.cashupProfit = 0;
-    this.cashupPayout = 0;
-
-    
-    this.cashupBtn = true;
+    this.cashupPercentage = super.get_X_Percent(1);
   }
 
-  public getCashup(value: number | any) {
+  public getCashup() {
 
-    // Check if both input field are empty
-    if (this.cashupField === undefined || this.cashupSelect === undefined) {
+    if (this.cashupField === undefined || this.cashupSelect === undefined || isNaN(this.cashupField) || isNaN(this.cashupSelect)) {
       this.cashupBtn = true;
+      this.cashupProfit = 0;
+      this.cashupPayout = 0;
       return;
     }
 
+    const value = this.cashupField;
     this.cashupProfit = this.cashupPercentage * value * this.cashupSelect;
-    this.cashupPayout = this.cashupProfit + this.cashupField;
+    this.cashupPayout = this.cashupProfit + value;
 
-    if ( value >= 3000 && value <= 100000 ) { // Only activate btn when value is >= 3000
+    if (value >= 3000 && value <= 100000) {
       this.cashupBtn = false;
-    } else { // if ( value < 3000 ) {
+    } else {
       this.cashupBtn = true;
     }
   }
 
   ngOnInit(): void {
   }
-
 }

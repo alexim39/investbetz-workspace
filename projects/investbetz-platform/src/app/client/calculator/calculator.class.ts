@@ -8,8 +8,4 @@ export class CalculatorClass extends UserDashboardClass {
     super();
 
   }
-
-  /* protected getPercentage(percentageOf: number): number {
-    return percentageOf / 100;
-  } */
 }

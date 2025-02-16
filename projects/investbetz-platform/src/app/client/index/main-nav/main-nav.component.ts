@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { NgIf } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NotificationsComponent } from './notifications/notifications.component';
-import { AuthService } from '../../../auth/auth.service';
+import { AuthSignout } from './signout.component';
 
 // Declare jquery as any
 declare const $: any;
@@ -22,47 +21,21 @@ styles: `
   margin-right: 3px !important;
 }
 `,
-imports: [RouterLink, NotificationsComponent, RouterLinkActive],
+imports: [RouterLink, NotificationsComponent, RouterLinkActive, AuthSignout],
 })
 
 export class MainNavComponent implements OnInit {
 
-  public isAdmin!: boolean;
 
-  constructor(
-    private auth: AuthService, 
-    private router: Router
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    // Load Current User Details
-    this.auth.profile().subscribe((user: any) => {
-      //this.cardDepositEmail = user.email;
-      //this.clientId = user._id;
-      if (user.userType === 'admin') {
-        this.isAdmin = true;
-      }
-    }, (error: Error) => {
-      // disable btn
-      console.error(error)
-    })
 
     $(document).ready(() => {
       // Init dropdown
       $('.dropdown-trigger').dropdown({
         coverTrigger: false
       });
-    });
-  }
-
-  public signOut() {
-    // Call AuthService logout Method
-    this.auth.signOut().subscribe((response: any,) => {
-      if (response.message === 'logout') {
-        this.router.navigate(['/']);
-      }
-    }, (error) => {
-      console.error(error)
     });
   }
 

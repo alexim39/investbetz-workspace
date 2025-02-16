@@ -4,54 +4,48 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 
-// declare jquery as any
-declare const $: any;
-
 @Component({
-    selector: 'app-cashout-calculator',
-    templateUrl: './cashout-calculator.component.html',
-    styleUrls: ['./cashout-calculator.component.scss'],
-    imports: [FormsModule, RouterLink, CurrencyPipe]
+  selector: 'app-cashout-calculator',
+  templateUrl: './cashout-calculator.component.html',
+  styleUrls: ['./cashout-calculator.component.scss'],
+  imports: [FormsModule, RouterLink, CurrencyPipe]
 })
 export class CashoutCalculatorComponent extends CalculatorClass implements OnInit {
 
-  // Cashout properties
   cashoutField!: number;
-  cashoutProfit: number;
-  cashoutPayout: number;
+  cashoutProfit: number = 0; // Initialize directly
+  cashoutPayout: number = 0; // Initialize directly
   cashoutPercentage: number;
 
-  // Submit Btn
-  cashoutBtn: boolean;
+  cashoutBtn: boolean = true; // Initialize directly
 
-  constructor() { 
-    // Call parent class constructor
+  constructor() {
     super();
-
-    // Init Cashout properties
-    this.cashoutPercentage = super.get_X_Percent(2); // 2% of amount
-
-    this.cashoutProfit = 0;
-    this.cashoutPayout = 0;
-
-    // Init Btn
-    this.cashoutBtn = true;
+    this.cashoutPercentage = super.get_X_Percent(2);
   }
 
-  public getCashout(value: number | any) {
-    // console.log(value);
-    this.cashoutProfit = this.cashoutPercentage * value * 6; // Mutiply by 6 instead of 7 because sunday is not involved
-    this.cashoutPayout = this.cashoutProfit + this.cashoutField;
+  public getCashout(value: string) { // Accept string as input
+    const numValue = Number(value); // Convert string to number
 
-    if ( value >= 5000 && value <= 100000 ) { // Only activate btn when value is >= 5000
+    if (isNaN(numValue)) { // Handle invalid input (e.g., non-numeric characters)
+      this.cashoutProfit = 0;
+      this.cashoutPayout = 0;
+      this.cashoutBtn = true;
+      return; // Stop further calculation
+    }
+
+
+    this.cashoutProfit = this.cashoutPercentage * numValue * 6;
+    this.cashoutPayout = this.cashoutProfit + numValue; // cashoutField is not used in the calculation
+
+    if (numValue >= 5000 && numValue <= 100000) {
       this.cashoutBtn = false;
-    } else { //  if ( value < 5000 ) {
+    } else {
       this.cashoutBtn = true;
     }
+    this.cashoutField = numValue; // Update cashoutField with the numeric value
   }
-
 
   ngOnInit(): void {
   }
-
 }

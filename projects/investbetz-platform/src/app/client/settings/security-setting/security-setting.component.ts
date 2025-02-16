@@ -22,7 +22,8 @@ import { AuthService } from '../../../auth/auth.service';
             transition('void <=> *', animate(1000)),
         ]),
     ],
-    imports: [FormsModule, ReactiveFormsModule, NgIf]
+    imports: [FormsModule, ReactiveFormsModule, NgIf],
+    providers: [SecuritySettingService]
 })
 export class SecuritySettingComponent extends SecuritySettingClass implements OnInit {
 

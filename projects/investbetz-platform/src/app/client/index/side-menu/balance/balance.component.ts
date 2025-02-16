@@ -5,15 +5,43 @@ import { EventEmitterService } from './../../../../shared/services-module/event-
 import { CurrencyPipe } from '@angular/common';
 import { AuthService } from '../../../../auth/auth.service';
 
-// declare jquery as any
-declare const $: any;
-
 @Component({
-    selector: 'app-balance',
-    templateUrl: './balance.component.html',
-    styleUrls: ['./balance.component.scss'],
-    imports: [CurrencyPipe],
-    providers: [BalanceService]
+selector: 'async-balance',
+template: `
+<li (click)="refreshBalance()">
+  <div class="subheader center-left trucate">
+    <span>
+      <i title="Refresh balance" class="material-icons">refresh</i>
+    </span> 
+    Bal: {{totalBalance | currency:'NIG':'&#8358;'}} / 
+    <small>Withdrawable: <i>{{withdrawable | currency:'NIG':'&#8358;'}}</i></small>
+  </div>
+</li>
+`,
+styles: [`
+li {
+  cursor: pointer;
+  div {
+    margin-left: 1.8em;
+    span {
+      font-size: 1.2em;
+      top: 0.2em;
+      position: relative;
+      z-index: 1000 !important;
+      i {
+        font-size: 0.8em;
+      }
+    }
+    small {
+      i {
+        font-weight: bold;
+      }
+    }
+  }
+}
+`],
+imports: [CurrencyPipe],
+providers: [BalanceService]
 })
 export class BalanceComponent implements OnInit {
 

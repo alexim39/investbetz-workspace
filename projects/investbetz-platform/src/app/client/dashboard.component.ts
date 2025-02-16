@@ -6,10 +6,10 @@ import { MainNavComponent } from './index/main-nav/main-nav.component';
 @Component({
     selector: 'app-user-dashboard',
     template: `
-    <app-side-menu></app-side-menu>
+    <async-side-menu></async-side-menu>
 
     <main class="row">
-      <app-main-nav></app-main-nav>
+      <async-main-nav></async-main-nav>
       <router-outlet></router-outlet>
     </main>
 

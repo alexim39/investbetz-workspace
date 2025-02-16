@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
   template: `
    <div class="fixed-action-btn horizontal click-to-toggle">
       <a class="btn-floating pulse btn-large red">
-          <i class="material-icons">menu</i>
+          <i class="material-icons">link</i>
+          <!-- <i class="material-icons">menu</i> -->
       </a>
       <ul>
         <li title="Chat">
